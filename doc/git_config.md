@@ -8,7 +8,6 @@ Github nos enseña en esta [guía](https://docs.github.com/es/free-pro-team@late
 ![twofactor](./img/twofactor.png "twofactor")
 
 ## Configuración correcta del perfil
-<img src="https://github.com/fer227/PROJECT-CC/blob/main/docs/images/perfil.png" width="60%" height="40%">
 ![Perfil](./img/perfil.png "Perfil")
 
 ## Creación de los tres repositorios de trabajo
