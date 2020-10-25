@@ -1,0 +1,2 @@
+## Descripción del proyecto
+Se pretende desarrollar una solución para la organización de libros de un establecimiento (como por ejemplo, una biblioteca) y administrar los préstamos de los mismos con los diferentes clientes. Yo haré de supuesto cliente (el encargado o propietario de la biblioteca) para definir las necesidades que posteriormente darán lugar a las historias de usuario.
