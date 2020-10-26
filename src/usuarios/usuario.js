@@ -1,5 +1,5 @@
 class Usuario{
-	constructor(nombre, apellidos, email, telefono, dni, genero, fecha_nacimiento){
+	constructor(nombre, apellidos, email, telefono, dni, genero, fecha_nacimiento, username, password){
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
@@ -7,6 +7,8 @@ class Usuario{
 		this.dni = dni;
 		this.genero = genero;
 		this.fecha_nacimiento = fecha_nacimiento;
+		this.username = username;
+		this.password = password;
 	}
 
 	getNombre(){
@@ -43,5 +45,13 @@ class Usuario{
 
 	getFechanNacimiento(){
 		return this.fecha_nacimiento;
+	}
+
+	getUser(){
+		return this.username;
+	}
+
+	checkPassword(password){
+		
 	}
 }
