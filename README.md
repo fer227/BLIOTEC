@@ -20,7 +20,7 @@ Para la arquitectura de este proyecto utilizaremos una arquitectura basada en mi
 
 Como lenguaje principal vamos a utilizar [Node.js](https://nodejs.org/es/) por los siguientes motivos:
 - Me gustaría aprender en nuevo lenguaje y este aún no he tenido la ocasión de probarlo.
-- Es un lenguaje bastante emergente, con mucho soporte en la comunidad y dispone de multitud de librerías muy utiles.
+- Es un lenguaje bastante emergente, con mucho soporte en la comunidad y dispone de multitud de librerías muy útiles.
 - Las API REST se gestionan con mucha facilidad en este lenguaje.
 
 Por otro lado, utilizaremos [Express](https://expressjs.com/es/), una librería de Node.js para el enrutamiento. Está bastante estándarizado por la comunidad para gestionar el servidor en Node.js.
@@ -55,7 +55,7 @@ Este es el planteamiento inicial de las historias de usuario (puede cambiar). A 
 
 ## Creación de las clases entidad
 
-De acuerdo a la arquitectura escogida, creamos tres clases:
+De acuerdo a la arquitectura escogida y a las primeras historias de usuario, creamos estas tres clases:
 
 - [libro.js](https://github.com/fer227/BLIOTEC/blob/main/src/libros/libro.js)
 - [prestamo.js](https://github.com/fer227/BLIOTEC/blob/main/src/prestamos/prestamo.js)
