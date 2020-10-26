@@ -1,0 +1,4 @@
+entidad:
+  - src/libros/libro.js
+  - src/prestamos/prestamo.js
+  - src/usuarios/usuario.js

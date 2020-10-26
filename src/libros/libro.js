@@ -1,5 +1,5 @@
 class Libro{
-	constructor(id, titulo, autor, anio, edicion, isbn, paginas, editorial){
+	constructor(id, titulo, autor, anio, edicion, isbn, paginas, editorial, genero){
 		this.titulo = titulo;
 		this.id = id;
 		this.autor = autor;
@@ -7,6 +7,7 @@ class Libro{
 		this.edicion = edicion;
 		this.isbn = isbn;
 		this.paginas = paginas;
+		this.genero = genero;
 		this.editorial = editorial;
 	}
 
@@ -22,23 +23,11 @@ class Libro{
 		return this.autor;
 	}
 
-	getAnio(){
-		return this.anio;
-	}
-
-	getEdicion(){
-		return this.edicion;
-	}
-
 	getISBN(){
 		return this.isbn;
 	}
 
-	getPaginas(){
-		return this.paginas;
-	}
-
-	getEditorial(){
-		return this.editorial
+	getGenero(){
+		return this.genero;
 	}
 }

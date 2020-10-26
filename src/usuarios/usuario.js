@@ -35,23 +35,11 @@ class Usuario{
 		return this.telefono;
 	}
 
-	getDNI(){
-		return this.dni;
-	}
-
-	getGenero(){
-		return this.genero;
-	}
-
-	getFechanNacimiento(){
-		return this.fecha_nacimiento;
-	}
-
-	getUser(){
+	getUsername(){
 		return this.username;
 	}
 
 	checkPassword(password){
-		
+
 	}
 }
