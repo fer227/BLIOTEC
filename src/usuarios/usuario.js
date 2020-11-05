@@ -1,14 +1,12 @@
 class Usuario{
-	constructor(nombre, apellidos, email, telefono, dni, genero, fecha_nacimiento, username, password){
+	constructor(nombre, apellidos, email, telefono, dni, fecha_nacimiento, username){
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.telefono = telefono;
 		this.dni = dni;
-		this.genero = genero;
 		this.fecha_nacimiento = fecha_nacimiento;
 		this.username = username;
-		this.password = password;
 	}
 
 	getNombre(){
@@ -23,10 +21,6 @@ class Usuario{
 		return this.email;
 	}
 
-	setEmail(email){
-		this.email = email;
-	}
-
 	setTelefono(telefono){
 		this.telefono = telefono;
 	}
@@ -37,9 +31,5 @@ class Usuario{
 
 	getUsername(){
 		return this.username;
-	}
-
-	checkPassword(password){
-
 	}
 }
