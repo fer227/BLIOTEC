@@ -33,3 +33,5 @@ class Usuario{
 		return this.username;
 	}
 }
+
+module.exports = Usuario;
