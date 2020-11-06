@@ -30,5 +30,6 @@ class UsuarioController{
 		else{
 			throw "El usuario no existe";
 		}
+	}
 	
 }
