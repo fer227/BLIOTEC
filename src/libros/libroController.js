@@ -8,17 +8,16 @@ class LibroController{
 	addLibro(id, titulo, autor, anio, edicion, isbn, paginas, editorial, genero){
 		let ngenero = this.comprobarTipos(id, titulo, autor, anio, edicion, isbn, paginas, editorial, genero);
 		if(!(id in this.libros)){
-				var libro = new Libro(id, titulo, autor, anio, edicion, isbn, paginas, editorial, ngenero);
-				this.libros[id] = libro;
-			}
-			else{
-				throw "Identificador del libro existente";
-			}
+			var libro = new Libro(id, titulo, autor, anio, edicion, isbn, paginas, editorial, ngenero);
+			this.libros[id] = libro;
+		}
+		else{
+			throw "Identificador del libro existente";
 		}
 	}
 
 	comprobarTipos(id, titulo, autor, anio, edicion, isbn, paginas, editorial, genero){
-		if((typeof id === 'number') && (typeof titulo === 'string') && (typeof paginas === 'number') && (typeof genero === 'string') && (typeof autor === 'string') && (typeof anio === 'number') && (typeof edicion === 'string') && (typeof isbn === 'string')){
+		if((typeof id === 'number') && (typeof titulo === 'string') && (typeof paginas === 'number') && (typeof genero === 'string') && (typeof autor === 'string') && (typeof anio === 'number') && (typeof edicion === 'number') && (typeof isbn === 'number')){
 			let ngenero = this.comprobarGenero(genero);
 			return ngenero;
 		}
