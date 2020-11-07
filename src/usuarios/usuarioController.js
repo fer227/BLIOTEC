@@ -1,4 +1,4 @@
-const Usuario = require('./usuario.js')
+const Usuario = require('./usuario.js');
 
 class UsuarioController{
 	constructor(){
