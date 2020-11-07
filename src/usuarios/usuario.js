@@ -32,6 +32,17 @@ class Usuario{
 	getUsername(){
 		return this.username;
 	}
+
+	to_string(){
+		var cadena = this.nombre + ", ";
+		cadena += this.apellidos + ", ";
+		cadena += this.email + ", ";
+		cadena += this.telefono.toString() + ", ";
+		cadena += this.dni + ", ";
+		cadena += this.fecha_nacimiento.toString() + ", ";
+		cadena += this.username;
+		return cadena;
+	}
 }
 
 module.exports = Usuario;
