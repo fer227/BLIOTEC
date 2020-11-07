@@ -30,4 +30,10 @@ class Libro{
 	getGenero(){
 		return this.genero;
 	}
+
+	to_string(){
+		
+	}
 }
+
+module.exports = Libro;
