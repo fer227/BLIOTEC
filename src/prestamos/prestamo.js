@@ -1,9 +1,10 @@
 class Prestamo{
-	constructor(id_libro, username, fecha_inicio, fecha_fin, devuelto){
+	constructor(id_libro, username, fecha_inicio, fecha_fin){
 		this.id_libro = id_libro;
 		this.username = username;
 		this.fecha_inicio = fecha_inicio;
 		this.fecha_fin = fecha_fin;
+		this.devuelto = false;
 	}
 
 	getID(){
@@ -27,10 +28,19 @@ class Prestamo{
 	}
 
 	finalizarPrestamo(){
-
+		this.devuelto = true;
 	}
 
 	renovarPrestamo(){
+
+	}
+
+	to_string(){
+		cadena = this.id_libro.toString() + ", ";
+		cadena += this.username + ", ";
+		cadena += this.fecha_inicio.toString() + ", ";
+		cadena += this.fecha_fin.toString() + ", ";
+		cadena += this.devuelto.toString() + ", ";
 
 	}
 
