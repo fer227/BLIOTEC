@@ -1,3 +1,14 @@
+lenguaje:
+  - node.js
+
+fichero_tareas:
+  - gulpfile.js
+
+test:
+  - test/libros_test.js
+  - test/usuarios_test.js
+  - test/prestamos_test.js
+
 entidad:
   - src/libros/libro.js
   - src/prestamos/prestamo.js
