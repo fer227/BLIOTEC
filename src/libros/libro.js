@@ -32,7 +32,15 @@ class Libro{
 	}
 
 	to_string(){
-		
+		var cadena = this.id.toString() + ", ";
+		cadena += this.titulo + ", ";
+		cadena += this.autor + ", ";
+		cadena += this.anio.toString() + ", ";
+		cadena += this.edicion.toString() + ", ";
+		cadena += this.isbn.toString() + ", ";
+		cadena += this.paginas.toString() + ", ";
+		cadena += this.genero.toString() + ", ";
+		cadena += this.editorial + ", ";
 	}
 }
 
