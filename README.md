@@ -23,3 +23,25 @@ Existen multitud de bibliotecas de aserciones para Javascript e incluso el propi
 ## Marco de pruebas
 Puesto que nos hemos decantado por BDD, algunos marcos de pruebas orientados a esta filosofía son Mocha, Cucumber o Jest. Cualquiera de ellos nos puede funcionar para combinar con Chai, pero el combo Chai + Mocha parece ser bastante popular en la comunidad (en la propia [página de instalación](https://www.chaijs.com/guide/installation/) de Chai recomiendan Mocha pero recuerdan que es compatible con cualquiera), así que nos decantamos por esa combinación.
 
+## Avance del proyecto.
+Las historias de usuario en las que se han trabajado han sido las siguientes (dentro dejan el historial de commits):
+- Del milestone [Prototipo mínimo funcional](https://github.com/fer227/BLIOTEC/milestone/3)
+	- [Como usuario quiero poder registrarme](https://github.com/fer227/BLIOTEC/issues/9)
+	- [Como administrador quiero poder introducir libros](https://github.com/fer227/BLIOTEC/issues/8)
+	- [Como usuario quiero poder hacer préstamos](https://github.com/fer227/BLIOTEC/issues/10)
+
+- Tareas que se han planteado.
+	- [Clase controladora de usuarios](https://github.com/fer227/BLIOTEC/issues/20)
+	- [Selección del gestor de tareas](https://github.com/fer227/BLIOTEC/issues/21)
+	- [Automatizar el lanzamiento de test](https://github.com/fer227/BLIOTEC/issues/24)
+	- [Clase controladora de libros](https://github.com/fer227/BLIOTEC/issues/25)
+	- [Clase controladora de préstamos](https://github.com/fer227/BLIOTEC/issues/27)
+	- [Actualizar cc.yaml](https://github.com/fer227/BLIOTEC/issues/28)
+	- [Actualizar documentación](https://github.com/fer227/BLIOTEC/issues/29)
+
+Como resultado general, tenemos tres clases controladoras con algunos métodos iniciales y unos [test](https://github.com/fer227/BLIOTEC/tree/main/test) que comprueban su correcto funcionamiento.
+
+## Algunas correcciones
+- [Planificación](./doc/planificacion.md) con un orden más coherente. Además, se han añadido nuevas historias de usuario.
+- Se han eliminado ciertos *getters* y *setters* inoperantes así como algunos datos miembro.
+- La autenticación de usuarios ya no está presente.
