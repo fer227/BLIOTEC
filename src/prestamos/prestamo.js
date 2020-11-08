@@ -1,5 +1,6 @@
 class Prestamo{
-	constructor(id_libro, username, fecha_inicio, fecha_fin){
+	constructor(id, id_libro, username, fecha_inicio, fecha_fin){
+		this.id = id;
 		this.id_libro = id_libro;
 		this.username = username;
 		this.fecha_inicio = fecha_inicio;
@@ -8,6 +9,10 @@ class Prestamo{
 	}
 
 	getID(){
+		return this.id;
+	}
+
+	getIDLibro(){
 		return this.id_libro;
 	}
 
@@ -36,7 +41,8 @@ class Prestamo{
 	}
 
 	to_string(){
-		var cadena = this.id_libro.toString() + ", ";
+		var cadena = this.id.toString() + ", ";
+		cadena += this.id_libro.toString() + ", ";
 		cadena += this.username + ", ";
 		cadena += this.fecha_inicio.toString() + ", ";
 		cadena += this.fecha_fin.toString() + ", ";
