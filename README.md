@@ -39,7 +39,15 @@ Las historias de usuario en las que se han trabajado han sido las siguientes (de
 	- [Actualizar cc.yaml](https://github.com/fer227/BLIOTEC/issues/28)
 	- [Actualizar documentación](https://github.com/fer227/BLIOTEC/issues/29)
 
-Como resultado general, tenemos tres clases controladoras con algunos métodos iniciales y unos [test](https://github.com/fer227/BLIOTEC/tree/main/test) que comprueban su correcto funcionamiento.
+Como resultado general, tenemos tres clases controladoras con algunos métodos iniciales:
+	- [libroController](./src/libros/libroController.js)
+	- [usuarioController](./src/usuarios/usuarioController.js)
+	- [prestamoController](./src/prestamos/prestamoController.js)
+
+También unos test que prueban esa nueva funcionalidad:
+	- [libros_test](./test/libros_test.js)
+	- [usuarios_test](./test/usuarios_test.js)
+	- [prestamos_test](./test/prestamos_test.js)
 
 ## Algunas correcciones
 - [Planificación](./doc/planificacion.md) con un orden más coherente. Además, se han añadido nuevas historias de usuario.
