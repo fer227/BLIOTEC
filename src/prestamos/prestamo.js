@@ -36,12 +36,13 @@ class Prestamo{
 	}
 
 	to_string(){
-		cadena = this.id_libro.toString() + ", ";
+		var cadena = this.id_libro.toString() + ", ";
 		cadena += this.username + ", ";
 		cadena += this.fecha_inicio.toString() + ", ";
 		cadena += this.fecha_fin.toString() + ", ";
 		cadena += this.devuelto.toString() + ", ";
-
+		return cadena;
 	}
-
 }
+
+module.exports = Prestamo;
