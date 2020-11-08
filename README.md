@@ -17,3 +17,6 @@ Puedes consultar el [gulp.js](https://github.com/fer227/BLIOTEC/blob/main/gulpfi
 - Otra para lanzar los test (la tarea *test*).
 - La tarea por defecto (*default*) lanza las dos tareas anteriores.
 
+## Biblioteca de aserciones
+Existen multitud de biblioteca de aserciones para Javascript e incluso el propio lenguaje cuenta con una biblioteca de aserciones (assert). Contamos con dos enfoques diferentes: [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) y [TDD](https://en.wikipedia.org/wiki/Test-driven_development). Como estamos utilizando domain-driven design junto con historias de usuario donde el cliente es quien guía el desarrollo del proyecto, veo más adecuado seguir el enfoque BDD. Las bibliotecas de aserciones tipo BDD pretenden acercarse al lenguaje natural. De esta forma, son más fáciles de entender y se adaptan a las necesidades del usuario. La biblioteca que finalmente he elegido es [Chai.js](https://www.chaijs.com/), que cuenta con expresiones del tipo *expect().to.be.a()* o *expect().to.equal()*. [Aquí](https://www.chaijs.com/guide/styles/) podemos ver los diferentes estilos de las aserciones de Chai.
+
