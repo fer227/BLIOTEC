@@ -1,12 +1,30 @@
 class Usuario{
 	constructor(nombre, apellidos, email, telefono, dni, fecha_nacimiento, username){
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.email = email;
-		this.telefono = telefono;
-		this.dni = dni;
-		this.fecha_nacimiento = fecha_nacimiento;
-		this.username = username;
+		if(this.comprobarTipos(nombre, apellidos, email, telefono, dni, fecha_nacimiento, username)){
+			this.nombre = nombre;
+			this.apellidos = apellidos;
+			this.email = email;
+			this.telefono = telefono;
+			this.dni = dni;
+			this.fecha_nacimiento = fecha_nacimiento;
+			this.username = username;
+		}
+	}
+
+	comprobarTipos(nombre, apellidos, email, telefono, dni, fecha_nacimiento, username){
+		let correcto = false;
+		if((typeof nombre === 'string') && (typeof apellidos === 'string') && (typeof telefono === 'number') && (typeof dni === 'string') && (typeof fecha_nacimiento.getMonth === 'function') && (typeof username === 'string')){
+			if(dni.length === 9){
+				correcto = true;
+			}
+			else{
+				throw "DNI no es correcto";
+			}
+		}
+		else{
+			throw "Los parámetros para crear el usuario no son correctos";
+		}
+		return correcto;
 	}
 
 	getNombre(){
