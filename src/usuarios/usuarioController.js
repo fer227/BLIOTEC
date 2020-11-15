@@ -8,8 +8,8 @@ class UsuarioController{
 
 	addUsuario(usuario){
 		if(usuario instanceof Usuario){
-			if(!(username in this.usuarios)){
-				this.usuarios[username] = usuario;
+			if(!(usuario.getUsername() in this.usuarios)){
+				this.usuarios[usuario.getUsername()] = usuario;
 			}
 			else{
 				throw "Usuario ya existe";

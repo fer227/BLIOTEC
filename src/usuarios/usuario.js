@@ -13,7 +13,7 @@ class Usuario{
 
 	comprobarTipos(nombre, apellidos, email, telefono, dni, fecha_nacimiento, username){
 		let correcto = false;
-		if((typeof nombre === 'string') && (typeof apellidos === 'string') && (typeof telefono === 'number') && (typeof dni === 'string') && (typeof fecha_nacimiento.getMonth === 'function') && (typeof username === 'string')){
+		if((typeof nombre === 'string') && (typeof apellidos === 'string') && (typeof telefono === 'number') && (typeof email === 'string') && (typeof dni === 'string') && (typeof fecha_nacimiento.getMonth === 'function') && (typeof username === 'string')){
 			if(dni.length === 9){
 				correcto = true;
 			}
