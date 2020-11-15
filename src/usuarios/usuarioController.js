@@ -15,6 +15,9 @@ class UsuarioController{
 				throw "Usuario ya existe";
 			}
 		}
+		else{
+			throw "No es un usuario";
+		}
 	}
 
 	getUsuario(username){
