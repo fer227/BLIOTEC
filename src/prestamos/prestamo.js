@@ -12,6 +12,9 @@ class Prestamo{
 			fecha_fin.setDate(fecha_fin.getDate() + rango_prestamo);
 			this.fecha_fin = fecha_fin;
 		}
+		else{
+			throw "Los tipos del préstamo no son correctos";
+		}
 	}
 
 	comprobarTipos(id, id_libro, username, fecha_inicio){
