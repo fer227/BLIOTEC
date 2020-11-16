@@ -9,7 +9,7 @@ class Prestamo{
 			this.devuelto = false;
 
 			var fecha_fin = new Date(fecha_inicio);
-			fecha_fin.setDate(fecha_fin.getDate() + rango_prestamo);
+			fecha_fin.setDate(fecha_fin.getDate() + Prestamo.rango_prestamo);
 			this.fecha_fin = fecha_fin;
 		}
 		else{
