@@ -7,7 +7,7 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "dependencies": {
     "chai": "^4.2.0",

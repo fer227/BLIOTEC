@@ -3,11 +3,16 @@ var gulp = require('gulp');
 var run = require('gulp-run');
 
 
+gulp.task('test', function(){
+   return run('npm test').exec();
+});
+
+
 gulp.task('syntax', function(){
     return run('for i in ./src/**/*.js; do node -c \"$i\"; done').exec()
 });
 
-gulp.task('test', function(){
+gulp.task('test2', function(){
 	return run('mocha ./test/*.js').exec()
 });
 
