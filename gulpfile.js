@@ -7,6 +7,9 @@ gulp.task('test', function(){
    return run('npm test').exec();
 });
 
+gulp.task('install', function(){
+    return run('npm install').exec();
+ });
 
 gulp.task('syntax', function(){
     return run('for i in ./src/**/*.js; do node -c \"$i\"; done').exec()
