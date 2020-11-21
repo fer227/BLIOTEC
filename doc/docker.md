@@ -67,3 +67,46 @@ Una vez creado y probado, vemos el tamaño del contenedor:
 ![Size ubuntu](./docker_img/ubuntu.png)
 
 Como era de esperar, el contendor tiene un tamaño considerable.
+
+### Alpine
+La estructura de nuestro Dockerfile en Alpine en muy similar al de Ubuntu, solo cambia la forma de instalar el lenguaje:
+
+```
+FROM alpine:latest
+LABEL maintainer ="Fernando Izquierdo Romera"
+
+# Creamos un usuario básico sin permisos de superusuario
+# Creamos la estructura de directorios e indicamos que el propietario es el nuevo usuario que hemos creado
+# Instalamos nodejs (por defecto instala la última LTS, que sería la 14) y npm. 
+RUN     addgroup bliotec \
+        && adduser -G bliotec -S usuario \
+        && mkdir -p /app/test/node_modules \
+        && chown -R usuario /app \
+        && apk add --update nodejs-current nodejs-npm
+
+# Cambiamos a nuestro directorio de trabajo que acabamos de crear
+WORKDIR /app/test
+
+# Copiamos los archivos de dependencias y ponemos como propietario al usuario que hemos creado
+COPY package*.json gulpfile.js ./
+
+# Instalamos el cliente de gulp (en global) para poder lanzar tareas, entre ellas instalación y test
+# Con npm link creamos un enlace simbólico para que lo detecte en node_modules y así podamos utilizarlo
+# Finalmente instalamos el módulo de gulp run (en local) puesto que lo utilizamos en nuestro task manager
+RUN npm install -g gulp-cli && npm link gulp && npm install gulp-run
+
+# Cambiamos al usuario node para no tener privilegios
+USER usuario
+
+# Instalamos las dependencias
+RUN gulp install
+
+# Lanzamos los test
+CMD ["gulp", "test"]
+```
+
+Cuando ya hemos creado y comprobado el contenedor, vemos cuanto ocupa:
+
+![Size alpine](./docker_img/alpine.png)
+
+Menos de la mitad de lo que nos ocupa la imagen en Ubuntu.
