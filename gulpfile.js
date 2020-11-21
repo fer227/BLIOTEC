@@ -8,7 +8,7 @@ gulp.task('test', function(){
 });
 
 gulp.task('install', function(){
-    return run('npm install').exec();
+    return run('npm install --also=dev').exec();
  });
 
 gulp.task('syntax', function(){
