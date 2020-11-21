@@ -110,3 +110,45 @@ Cuando ya hemos creado y comprobado el contenedor, vemos cuanto ocupa:
 ![Size alpine](./docker_img/alpine.png)
 
 Menos de la mitad de lo que nos ocupa la imagen en Ubuntu.
+
+### Node-Alpine
+La última imagen que nos queda por probar es la del lenguaje oficial de Node, que cuenta con las siguientes peculiaridades:
+
+- Viene ya con un usuario creado llamado **node** sin privilegios que podremos usar posteriormente. Al principio del [Dockerfile](https://github.com/nodejs/docker-node/blob/41ea0562287bbf98693572c9228edc1beb7fd709/14/alpine3.10/Dockerfile) de la imagen oficial se puede observar como se crea.
+- Puesto que vamos a utilizar una de las imágenes con la versión 14, ya cuenta con el lenguaje instalado además del gestor de dependencias *npm*.
+
+Gracias a esto, la estructura del Dockerfile es más sencilla y corta que los vistos anteriormente. Se muestra a continuación.
+
+```
+# Utilizamos la última versión LTS del lenguaje
+FROM node:14-alpine3.10
+LABEL maintainer ="Fernando Izquierdo Romera"
+
+# Creamos los directorios que vamos a necesitar y les ponemos como propietario al usuario node
+RUN mkdir -p /app/test/node_modules && chown -R node /app
+
+# Cambiamos a nuestro directorio de trabajo que acabamos de crear
+WORKDIR /app/test
+
+# Copiamos los archivos de dependencias y ponemos como propietario al usuario node
+COPY --chown=node package*.json gulpfile.js ./
+
+# Instalamos el cliente de gulp (en global) para poder lanzar tareas, entre ellas la de instalación y la de test
+# Con npm link creamos un enlace simbólico para que lo detecte en node_modules y así podamos utilizarlo
+# Finalmente instalamos el módulo de gulp run (en local) puesto que lo utilizamos en nuestro task manager
+RUN npm install -g gulp-cli && npm link gulp && npm install gulp-run
+
+# Cambiamos al usuario node para no tener privilegios
+USER node
+
+# Lanzamos la tarea que instala las dependencias
+RUN gulp install
+
+# Llamamos a la tarea que lanza los test
+CMD ["gulp", "test"]
+```
+
+Creamos el contenedor y vemos que es ligeramente más pesado que el contenedor de Alpine (30 MB más).
+
+![Size node](./docker_img/node.png)
+
