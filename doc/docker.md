@@ -28,7 +28,11 @@ En ubuntu necesitaremos crear un usuario básico e instalar el lenguaje. El Dock
 
 ```
 FROM ubuntu:focal
-LABEL maintainer ="Fernando Izquierdo Romera"
+LABEL maintainer ="Fernando Izquierdo Romera <fer227@correo.ugr.es>" \
+        com.bliotec.version="4.0.0" \
+        com.bliotec.release-date="2020-11-21" \
+        com.bliotec.repository="https://github.com/fer227/BLIOTEC"
+
 
 # Creamos un usuario con permisos básicos y la estructura de directorios que necesitamos
 # Indicamos que el propietario de esos directorios es el nuevo usuario que hemos creado
@@ -73,7 +77,11 @@ La estructura de nuestro Dockerfile en Alpine en muy similar al de Ubuntu, solo 
 
 ```
 FROM alpine:latest
-LABEL maintainer ="Fernando Izquierdo Romera"
+LABEL maintainer ="Fernando Izquierdo Romera <fer227@correo.ugr.es>" \
+        com.bliotec.version="4.0.0" \
+        com.bliotec.release-date="2020-11-21" \
+        com.bliotec.repository="https://github.com/fer227/BLIOTEC"
+
 
 # Creamos un usuario básico sin permisos de superusuario
 # Creamos la estructura de directorios e indicamos que el propietario es el nuevo usuario que hemos creado
@@ -122,7 +130,11 @@ Gracias a esto, la estructura del Dockerfile es más sencilla y corta que los vi
 ```
 # Utilizamos la última versión LTS del lenguaje
 FROM node:14-alpine3.10
-LABEL maintainer ="Fernando Izquierdo Romera"
+LABEL maintainer ="Fernando Izquierdo Romera <fer227@correo.ugr.es>" \
+        com.bliotec.version="4.0.0" \
+        com.bliotec.release-date="2020-11-21" \
+        com.bliotec.repository="https://github.com/fer227/BLIOTEC"
+
 
 # Creamos los directorios que vamos a necesitar y les ponemos como propietario al usuario node
 RUN mkdir -p /app/test/node_modules && chown -R node /app
@@ -152,3 +164,20 @@ Creamos el contenedor y vemos que es ligeramente más pesado que el contenedor d
 
 ![Size node](./docker_img/node.png)
 
+## Elección del contenedor
+Como estamos tratando de optimizar nuestro contenedor, el de Ubuntu queda descartado pues su peso es muy superior en comparación a los otros dos, lo que nos deja entre el de Alpine y el del lenguaje oficial.
+
+Cualquiera de los dos contenedores podría servirnos para lo que pretendemos hacer y la diferencia de peso es de apenas 30 MB. Finalmente decido quedarme con el de **Node-Alpine** por los siguiente motivos:
+
+- El Dockerfile resultante es más sencillo.
+- La imagen es desarrollada y mantenida por el [Node.js Docker Team](https://github.com/nodejs/docker-node), los cuales optimizan y adaptan las imágenes para que el lenguaje funcione lo mejor posible.
+
+## Buenas prácticas
+- Se ha intentado unificar lo máximo posible las instrucciones **RUN**, persiguiendo una disminución del número de capas del contenedor.
+- Se han utilizado los permisos que correspondían en cada momento, llevando finalmente la instalación y los test con usuarios sin privilegios. Para ello hemos utilizado el usuario de node, pensado para eso mismo.
+- Identificamos el proyecto mediante *labels* y las ponemos todas en una misma línea.
+- Copiamos solo lo justo y necesario: el archivo de dependencias y el de tareas.
+- También intentamos instalar solo lo necesario para que el testeo pueda funcionar (gulp y un módulo del mismo).
+- También es buena práctica aislar la instalación de las dependencias del resto de acciones, lo cual se ha llevado a cabo.
+
+- Principal referencia: [buenas prácticas](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).

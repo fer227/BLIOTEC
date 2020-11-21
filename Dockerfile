@@ -1,6 +1,9 @@
 # Utilizamos la última versión LTS del lenguaje
 FROM node:14-alpine3.10
-LABEL maintainer ="Fernando Izquierdo Romera"
+LABEL maintainer ="Fernando Izquierdo Romera <fer227@correo.ugr.es>" \
+        com.bliotec.version="4.0.0" \
+        com.bliotec.release-date="2020-11-21" \
+        com.bliotec.repository="https://github.com/fer227/BLIOTEC"
 
 # Creamos los directorios que vamos a necesitar y les ponemos como propietario al usuario node
 RUN mkdir -p /app/test/node_modules && chown -R node /app
