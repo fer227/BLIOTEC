@@ -22,3 +22,48 @@ En general, los pasos que he seguido en los diferentes Dockerfiles son muy simil
 5. Lanzar los test.
 
 Cada imagen, aunque sigue el esquema anterior, tiene sus peculiaridades que veremos a continuación.
+
+### Ubuntu
+En ubuntu necesitaremos crear un usuario básico e instalar el lenguaje. El Dockerfile resultante es el siguiente:
+
+```
+FROM ubuntu:focal
+LABEL maintainer ="Fernando Izquierdo Romera"
+
+# Creamos un usuario con permisos básicos y la estructura de directorios que necesitamos
+# Indicamos que el propietario de esos directorios es el nuevo usuario que hemos creado
+# Instalamos la versión que estamos utilizando de Node (la última LTS, que se corresponde con la 14) y para ello necesitamos curl
+# Una vez lo hemos instalado, ya podemos eliminar curl pues no lo vamos a necesitar
+RUN useradd -m usuario && mkdir -p /app/test/node_modules \
+        && chown -R usuario /app \
+        && apt-get update && apt-get install curl -y\
+        && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+        && apt-get install -y nodejs \
+        && apt-get remove --auto-remove curl -y
+
+# Cambiamos al directorio que hemos creado
+WORKDIR /app/test
+
+# Copiamos los archivos de dependencias y ponemos como propietario al usuario que hemos creado
+COPY --chown=usuario package*.json gulpfile.js ./
+
+# Instalamos el cliente de gulp (en global) para poder lanzar tareas, entre ellas instalación y test
+# Con npm link creamos un enlace simbólico para que lo detecte en node_modules y así podamos utilizarlo
+# Finalmente instalamos el módulo de gulp run (en local) puesto que lo utilizamos en nuestro task manager para lanzar tareas
+RUN npm install -g gulp-cli && npm link gulp && npm install gulp-run
+
+# Cambiamos al usuario node para no tener privilegios
+USER usuario
+
+# Instalamos las dependencias
+RUN gulp install
+
+# Lanzamos los test
+CMD ["gulp", "test"]
+```
+
+Una vez creado y probado, vemos el tamaño del contenedor:
+
+![Size ubuntu](./docker_img/ubuntu.png)
+
+Como era de esperar, el contendor tiene un tamaño considerable.
