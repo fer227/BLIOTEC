@@ -27,3 +27,15 @@ describe("Test sobre renovación de préstamos: ", function(){
 		expect(str_expected).to.equal(str_real);
 	})
 });
+
+describe("Test sobre la devolución de libros: ", function(){
+	it("Devolvemos un libro y comprobamos que su estado es el correcto",function(){
+		pc = new PrestamoController();
+		var today = new Date();
+		prestamo = new Prestamo(0, 11, "fernando", today);
+		pc.addPrestamo(prestamo);
+		pc.devolver(0);
+		prestamo_from_pc = pc.getPrestamo(0);
+		expect(prestamo.getDevuelto()).to.true;
+	})
+});

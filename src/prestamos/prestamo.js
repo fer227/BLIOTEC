@@ -63,7 +63,7 @@ class Prestamo{
 		return this.devuelto;
 	}
 
-	finalizarPrestamo(){
+	devolver(){
 		this.devuelto = true;
 	}
 
