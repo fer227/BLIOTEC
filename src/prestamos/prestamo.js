@@ -30,7 +30,9 @@ class Prestamo{
 	}
 
 	renovar(){
-		this.fecha_fin.setDate(this.fecha_fin.getDate + (Prestamo.rango_prestamo - this.n_renovaciones));
+		var nuevo_fin = new Date(this.fecha_fin);
+		nuevo_fin.setDate(nuevo_fin.getDate() + (Prestamo.rango_prestamo - this.n_renovaciones));
+		this.fecha_fin = nuevo_fin;
 		if(this.n_renovaciones != 5){
 			this.n_renovaciones++;
 		}

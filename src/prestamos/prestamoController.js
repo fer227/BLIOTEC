@@ -28,7 +28,8 @@ class PrestamoController{
 	renovar(id){
 		if(id in this.prestamos){
 			let prestamo = this.prestamos[id];
-			let nuevo_limite = prestamo.renovar();			
+			let nuevo_limite = prestamo.renovar();
+			return nuevo_limite;			
 		}
 		else{
 			throw "El identificador del préstamo no existe";
