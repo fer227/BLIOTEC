@@ -30,3 +30,14 @@ Ahora procedemos a automatizar el proceso de creación de imágenes para cada *p
 Podemos ver que ahora aparece como automatizado (*Autobuild*).
 
 ![success](./doc/docker_img/success.png)
+
+### Registro alternativo: GitHub Container Registry
+Para utilizar el registro de Github Container he seguido el siguiente [tutorial](https://docs.github.com/es/free-pro-team@latest/packages/using-github-packages-with-your-projects-ecosystem/configuring-docker-for-use-with-github-packages). Una vez hemos generado el token, iniciamos sesión como se indica en el tutorial:
+
+![login](./doc/docker_img/login.png)
+
+Una vez identificados, publicamos la imagen:
+
+![push](./doc/docker_img/push_github.png)
+
+Y ya podemos ver en la página de nuestro propio repositorio como aparece la nueva imagen. Se puede ver [aquí](https://github.com/fer227/BLIOTEC/packages/513267).
