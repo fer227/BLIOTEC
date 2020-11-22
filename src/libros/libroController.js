@@ -1,6 +1,5 @@
 const Libro = require('./libro.js');
 const Valoracion = require('./valoracion.js');
-const Libro = require('./valoracion.js');
 
 class LibroController{
 	constructor(){
@@ -28,8 +27,7 @@ class LibroController{
 			//Vemos si hay valoraciones de ese libro.
 			if(valoracion.getISBN() in this.valoraciones){
 				//En caso afirmativo, lo añadimos. En caso de que el usuario ya tenía una valoración, simplemente la sustituye
-				valoraciones_libro = this.valoraciones[valoracion.getISBN()]
-				valoraciones_libro[valoracion.getUsername()] = valoracion;
+				this.valoraciones[valoracion.getISBN()][valoracion.getUsername()] = valoracion;
 			}
 			else{
 				//Le creamos una entrada
