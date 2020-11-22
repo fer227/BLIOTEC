@@ -1,5 +1,5 @@
 # Justificación del Dockerfile
-En este apartado intentaremos justificar la imagen finalmente escogida para llevar a cabo la Docker de nuestro proyecto. También veremos los diferentes Dockerfiles que se han probado y sus estructuras.
+En este apartado intentaremos justificar la imagen finalmente escogida para llevar a cabo el Docker de nuestro proyecto. También veremos los diferentes Dockerfiles que se han probado y sus estructuras.
 
 ## Imágenes
 Las posibilidades para escoger una imagen en nuestro Dockerfile son muy variadas. Todos las distribuciones tienen imágenes para Docker (Fedora, CentOS, Ubuntu..) e incluso cada una de ellas tienen diferentes versiones. Por otro lado, también nos encontramos con imágenes oficiales de los diferentes lenguajes de programación que ya los traen instalados y listos para utilizarse. Finalmente me he decantado por las siguientes opciones:
