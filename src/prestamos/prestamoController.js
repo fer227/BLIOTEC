@@ -24,6 +24,16 @@ class PrestamoController{
 			throw "El identificador del préstamo no existe";
 		}
 	}
+
+	renovar(id){
+		if(id in this.prestamos){
+			let prestamo = this.prestamos[id];
+			let nuevo_limite = prestamo.renovar();			
+		}
+		else{
+			throw "El identificador del préstamo no existe";
+		}
+	}
 }
 
 module.exports = PrestamoController;
