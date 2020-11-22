@@ -35,6 +35,16 @@ class PrestamoController{
 			throw "El identificador del préstamo no existe";
 		}
 	}
+
+	devolver(id){
+		if(id in this.prestamos){
+			let prestamo = this.prestamos[id];
+			prestamo.devolver();			
+		}
+		else{
+			throw "El identificador del préstamo no existe";
+		}
+	}
 }
 
 module.exports = PrestamoController;
