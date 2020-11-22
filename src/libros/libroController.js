@@ -1,8 +1,11 @@
 const Libro = require('./libro.js');
+const Valoracion = require('./valoracion.js');
+const Libro = require('./valoracion.js');
 
 class LibroController{
 	constructor(){
 		this.libros = [];
+		this.valoraciones = [];
 	}
 
 	addLibro(libro){
@@ -18,6 +21,34 @@ class LibroController{
 			throw "No es un libro";
 		}
 		
+	}
+
+	addValoracion(valoracion){
+		if(valoracion instanceof Valoracion){
+			//Vemos si hay valoraciones de ese libro.
+			if(valoracion.getISBN() in this.valoraciones){
+				//En caso afirmativo, lo añadimos. En caso de que el usuario ya tenía una valoración, simplemente la sustituye
+				valoraciones_libro = this.valoraciones[valoracion.getISBN()]
+				valoraciones_libro[valoracion.getUsername()] = valoracion;
+			}
+			else{
+				//Le creamos una entrada
+				this.valoraciones[valoracion.getISBN()] = [];
+				this.valoraciones[valoracion.getISBN()][valoracion.getUsername()] = valoracion;
+			}
+		}
+		else{
+			throw "No es una valoración";
+		}
+	}
+
+	getValoracionLibro(isbn){
+		if(isbn in this.valoraciones){
+			return this.valoraciones[isbn];
+		}
+		else{
+			return 0;
+		}
 	}
 
 	getLibro(id){
