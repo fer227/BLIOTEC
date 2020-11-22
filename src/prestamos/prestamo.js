@@ -7,6 +7,7 @@ class Prestamo{
 			this.username = username;
 			this.fecha_inicio = fecha_inicio;
 			this.devuelto = false;
+			this.n_renovaciones = 0;
 
 			var fecha_fin = new Date(fecha_inicio);
 			fecha_fin.setDate(fecha_fin.getDate() + Prestamo.rango_prestamo);
@@ -26,6 +27,14 @@ class Prestamo{
 			throw "Los parámetros para crear el préstamo son incorrectos";
 		}
 		return correcto;
+	}
+
+	renovar(){
+		this.fecha_fin.setDate(this.fecha_fin.getDate + (Prestamo.rango_prestamo - this.n_renovaciones));
+		if(this.n_renovaciones != 5){
+			this.n_renovaciones++;
+		}
+		return this.fecha_fin;
 	}
 
 	getID(){
