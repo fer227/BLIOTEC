@@ -1,0 +1,11 @@
+---
+jobs:
+  test:
+    docker:
+      - image: fer227/bliotec:latest
+    steps:
+      - run: gulp test
+workflows:
+  tests:
+    jobs:
+      - test
