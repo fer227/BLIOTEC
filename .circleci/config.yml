@@ -5,7 +5,7 @@ jobs:
       - image: fer227/bliotec:latest
     steps:
       - checkout
-      - run: cp /app/test/node_modules ./
+      - run: cp -R /app/test/node_modules ./node_modules
       - run: cd /app/test
       - run: ls -la
       - run: pwd
