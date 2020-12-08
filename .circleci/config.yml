@@ -7,8 +7,6 @@ jobs:
       - checkout
       - run: cp -R /app/test/node_modules ./node_modules
       - run: npm link gulp
-      - run: ls -la
-      - run: pwd
       - run: gulp test
 workflows:
   tests:
