@@ -7,6 +7,6 @@ node_js:
 before_install:
   - npm install -g gulp-cli gulp-run
 
- script:
+script:
   - gulp install
   - gulp test
