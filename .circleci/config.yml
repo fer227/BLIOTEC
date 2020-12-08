@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: fer227/bliotec:latest
     steps:
-      - run: checkout
+      - checkout
       - run: cp /app/test/node_modules ./
       - run: cd /app/test
       - run: ls -la
