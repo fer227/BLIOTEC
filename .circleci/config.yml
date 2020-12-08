@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   test:
+    working_directory: /app/test
     docker:
       - image: fer227/bliotec:latest
     steps:
