@@ -1,9 +1,9 @@
----
 version: 2.1
 jobs:
   test:
     docker:
       - image: fer227/bliotec:latest
+    working_directory: /app/test
     steps:
       - run: gulp test
 workflows:
