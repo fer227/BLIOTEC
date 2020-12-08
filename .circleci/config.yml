@@ -3,8 +3,8 @@ jobs:
   test:
     docker:
       - image: fer227/bliotec:latest
-    working_directory: /app/test
     steps:
+      - checkout
       - run: gulp test
 workflows:
   tests:
