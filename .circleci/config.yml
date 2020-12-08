@@ -5,7 +5,6 @@ jobs:
     docker:
       - image: fer227/bliotec:latest
     steps:
-      - checkout
       - run: cd /app/test
       - run: ls -la
       - run: pwd
