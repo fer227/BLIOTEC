@@ -6,7 +6,7 @@ jobs:
     steps:
       - checkout
       - run: cp -R /app/test/node_modules ./node_modules
-      - run: cd /app/test
+      - run: npm link gulp
       - run: ls -la
       - run: pwd
       - run: gulp test
