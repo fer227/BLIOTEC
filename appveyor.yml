@@ -1,6 +1,6 @@
 image: Ubuntu
 stack:
-  - node 16
+  - node 14
   - node 10
 install:
   - npm install -g glup-cli gulp-run
