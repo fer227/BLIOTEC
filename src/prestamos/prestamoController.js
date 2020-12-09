@@ -25,6 +25,20 @@ class PrestamoController{
 		}
 	}
 
+	getPrestamosVencidos(){
+		let vencidos = [];
+		let today = new Date();
+		Object.values(this.prestamos).forEach(prestamo => {
+			if(!prestamo.getDevuelto()){
+				if(prestamo.getFin() < today){
+					vencidos.push(prestamo);
+				}
+			}
+		});
+
+		return vencidos;
+	}
+
 	renovar(id){
 		if(id in this.prestamos){
 			let prestamo = this.prestamos[id];
