@@ -39,3 +39,25 @@ describe("Test sobre la devolución de libros: ", function(){
 		expect(prestamo.getDevuelto()).to.true;
 	})
 });
+
+describe("Obtener préstamos vencidos", function(){
+	it("Debería obtener un array con los préstamos vencidos",function(){
+		pc = new PrestamoController();
+		var today = new Date();
+		//este será el préstamo ok
+		prestamo = new Prestamo(0, 11, "fernando", today);
+		pc.addPrestamo(prestamo);
+		//Los siguientes préstamos estarán vencidos. Tenemos en cuenta que el plazo son de 10 días así que tendremos que superar ese rango.
+		today.setDate(today.getDate() - 11);
+		prestamo0 = new Prestamo(1, 11, "fernando", today);
+		pc.addPrestamo(prestamo0);
+		today.setDate(today.getDate() - 2);
+		prestamo1 = new Prestamo(2, 11, "fernando", today);
+		pc.addPrestamo(prestamo1);
+
+		vencidos = pc.getPrestamosVencidos();
+		expect(vencidos.length).to.equal(2);
+		expect(vencidos[0]).to.equal(prestamo0);
+		expect(vencidos[1]).to.equal(prestamo1);
+	})
+});
