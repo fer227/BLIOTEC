@@ -3,8 +3,8 @@ const Valoracion = require('./valoracion.js');
 
 class LibroController{
 	constructor(){
-		this.libros = [];
-		this.valoraciones = [];
+		this.libros = {};
+		this.valoraciones = {};
 	}
 
 	addLibro(libro){
@@ -31,7 +31,7 @@ class LibroController{
 			}
 			else{
 				//Le creamos una entrada
-				this.valoraciones[valoracion.getISBN()] = [];
+				this.valoraciones[valoracion.getISBN()] = {};
 				this.valoraciones[valoracion.getISBN()][valoracion.getUsername()] = valoracion;
 			}
 		}

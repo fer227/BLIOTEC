@@ -3,7 +3,7 @@ const Usuario = require('./usuario.js');
 class UsuarioController{
 	constructor(){
 		//lo utilizaremos como un diccionario
-		this.usuarios = [];
+		this.usuarios = {};
 	}
 
 	addUsuario(usuario){
