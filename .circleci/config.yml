@@ -5,7 +5,8 @@ jobs:
       - image: fer227/bliotec:latest
     steps:
       - checkout
-      # Running gulp test
+      - run: cp -R /app/node_modules ./node_modules
+      - run: npm link gulp
       - run: gulp test
 workflows:
   tests:
