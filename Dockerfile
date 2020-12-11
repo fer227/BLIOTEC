@@ -6,10 +6,10 @@ LABEL maintainer ="Fernando Izquierdo Romera <fer227@correo.ugr.es>" \
         com.bliotec.repository="https://github.com/fer227/BLIOTEC"
 
 # Creamos los directorios que vamos a necesitar y les ponemos como propietario al usuario node
-RUN mkdir -p /app/test/node_modules && chown -R node /app
+RUN mkdir -p /app/test/ && chown -R node /app
 
 # Cambiamos a nuestro directorio de trabajo que acabamos de crear
-WORKDIR /app/test
+WORKDIR /app
 
 # Copiamos los archivos de dependencias y ponemos como propietario al usuario node
 COPY --chown=node package*.json gulpfile.js ./
@@ -25,5 +25,15 @@ USER node
 # Lanzamos la tarea que instala las dependencias
 RUN gulp install
 
+
+# Actualizamos la variable PATH que contiene los binarios que podemos ejecutar
+# Añadiendo nuestros js de node_modules/
+
+ENV PATH=/app/node_modules/.bin:$PATH
+
+WORKDIR /app/test
+
+
 # Llamamos a la tarea que lanza los test
 CMD ["gulp", "test"]
+
