@@ -5,6 +5,7 @@ jobs:
       - image: fer227/bliotec:latest
     steps:
       - checkout
+      # Running gulp test
       - run: gulp test
 workflows:
   tests:
