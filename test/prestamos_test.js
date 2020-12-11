@@ -29,14 +29,25 @@ describe("Test sobre renovación de préstamos: ", function(){
 });
 
 describe("Test sobre la devolución de libros: ", function(){
-	it("Devolvemos un libro y comprobamos que su estado es el correcto",function(){
+	it("Devolvemos un par de libros y comprobamos que las listas correspondientes son correctas",function(){
 		pc = new PrestamoController();
 		var today = new Date();
-		prestamo = new Prestamo(0, 11, "fernando", today);
-		pc.addPrestamo(prestamo);
+		prestamo1 = new Prestamo(0, 11, "fernando0", today);
+		prestamo2 = new Prestamo(1, 12, "fernando1", today);
+		prestamo3 = new Prestamo(2, 13, "fernando2", today);
+		pc.addPrestamo(prestamo1);
+		pc.addPrestamo(prestamo2);
+		pc.addPrestamo(prestamo3);
 		pc.devolver(0);
-		prestamo_from_pc = pc.getPrestamo(0);
-		expect(prestamo.getDevuelto()).to.true;
+		pc.devolver(2);
+		devueltos = pc.getPrestamosDevueltos();
+		actuales = pc.getPrestamosActuales();
+
+		expect(Object.keys(devueltos).length).to.equal(2);
+		expect(Object.keys(actuales).length).to.equal(1);
+		expect(actuales[1]).to.equal(prestamo2);
+		expect(devueltos[0]).to.equal(prestamo1);
+		expect(devueltos[2]).to.equal(prestamo3);
 	})
 });
 

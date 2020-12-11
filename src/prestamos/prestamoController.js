@@ -2,13 +2,13 @@ const Prestamo = require('./prestamo.js');
 
 class PrestamoController{
 	constructor(){
-		this.prestamos = [];
-		this.prestamosDevueltos = [];
+		this.prestamos = {};
+		this.prestamosDevueltos = {};
 	}
 
 	addPrestamo(prestamo){
 		if(prestamo instanceof Prestamo){
-			if(!(prestamo.getID() in this.prestamos) && !!(prestamo.getID() in this.prestamosDevueltos)){
+			if(!(prestamo.getID() in this.prestamos) && !(prestamo.getID() in this.prestamosDevueltos)){
 				this.prestamos[prestamo.getID()] = prestamo;
 			}
 			else{
@@ -47,6 +47,10 @@ class PrestamoController{
 		return this.prestamosDevueltos;
 	}
 
+	getPrestamosActuales(){
+		return this.prestamos;
+	}
+
 	renovar(id){
 		if(id in this.prestamos){
 			let prestamo = this.prestamos[id];
@@ -64,9 +68,7 @@ class PrestamoController{
 			this.prestamosDevueltos[prestamo.getID()] = prestamo;
 			prestamo.devolver();
 			
-			//No se recomienda usar el Delete pues nos deja elemento vacíos. Usamos splice.
-			let index = this.prestamos.indexOf(prestamo);
-			this.prestamos.splice(index,1);
+			delete this.prestamos[id]
 		}
 		else{
 			throw "El identificador del préstamo no existe";
