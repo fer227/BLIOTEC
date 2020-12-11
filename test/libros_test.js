@@ -25,3 +25,19 @@ describe("Test sobre valoraciones: ", function() {
 		expect(valoraciones["carla"].to_string()).to.equal(valoracion2.to_string());
 	})
 });
+
+describe("Test para obtener libros de un género: ", function() {
+	it("Debería obtener los libros de un género que indicamos", function(){
+		lc = new LibroController();
+		libro1 = new Libro(1, "Los Juegos del Hambre", "Suzanne Collins", 2008, 1, 9780439023481, 374, "Scholastic Corporation", "CIENCIAFICCION");
+		libro2 = new Libro(2, "El Corredor del Laberinto", "James Dashner", 2009, 1, 9876122673, 398 , "LECTORUM PUBN INC", "CIENCIAFICCION");
+		libro3 = new Libro(3, "El Cuento de la Criada", "Margaret Atwood", 2017, 020, 9788498388015, 416 , "Ediciones Salamandra", "DRAMA");
+		lc.addLibro(libro1);
+		lc.addLibro(libro2);
+		lc.addLibro(libro3);
+		libros = lc.getLibrosByGenero(2);
+		expect(libros.length).to.equal(2);
+		expect(libros[0]).to.equal(libro1);
+		expect(libros[1]).to.equal(libro2);
+	})
+});
