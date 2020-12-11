@@ -11,5 +11,9 @@ test:
 
 entidad:
   - src/libros/libro.js
+  - src/libros/libroController.js
+  - src/libros/valoracion.js
   - src/prestamos/prestamo.js
+  - src/prestamos/prestamoController.js
   - src/usuarios/usuario.js
+  - src/usuarios/usuarioController.js
