@@ -144,3 +144,15 @@ El resultado es satisfactorio:
  ![appveyor](./doc/ci_img/appveyor.png)
 
  También contamos con un *badge* al inicio del readme con el estado de los test en AppVeyor.
+
+ ## Avance del proyecto
+ Se han trabajado en las siguientes historias, dentro de las cuales se encuentra el historial de commits:
+ - [Como administrador quiero saber qué prestamos están caducados](https://github.com/fer227/BLIOTEC/issues/18).
+ - [Como usuario quiero hacer búsqueda de libros por criterios](https://github.com/fer227/BLIOTEC/issues/15).
+
+ También se ha trabajado sobre los siguientes issues:
+ - [Incorporar uno o varios sistemas de integración continua](https://github.com/fer227/BLIOTEC/issues/34)
+ - [Dividir la lista de préstamos en los actuales y los devueltos](https://github.com/fer227/BLIOTEC/issues/36).
+ - [Actualizar la documentación con lo avanzado](https://github.com/fer227/BLIOTEC/issues/32).
+ - [Actualizar el cc.yaml](https://github.com/fer227/BLIOTEC/issues/35).
+ - [Cambiar arrays por diccionarios](https://github.com/fer227/BLIOTEC/issues/37).
