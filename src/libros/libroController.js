@@ -49,6 +49,21 @@ class LibroController{
 		}
 	}
 
+	getLibrosByGenero(genero){
+		if((typeof genero === 'number' ) && (genero > 0 && genero < 10)){
+			let libros = [];
+			Object.values(this.libros).forEach(libro => {
+				if(libro.getGenero() == genero){
+					libros.push(libro);
+				}
+			});
+			return libros;
+		}
+		else{
+			throw "El género no es correcto";
+		}
+	}
+
 	getLibro(id){
 		if(id in this.libros){
 			return this.libros[id];
