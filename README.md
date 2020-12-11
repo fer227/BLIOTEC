@@ -86,7 +86,7 @@ jobs:
     docker:
       - image: fer227/bliotec:latest
     steps:
-      - run: cp -R /app/test/node_modules ./node_modules
+      - run: cp -R /app/node_modules ./node_modules
       - run: npm link gulp
       - run: gulp test
 workflows:
@@ -100,7 +100,7 @@ workflows:
  3. Enlazamos gulp (tenemos que hacerlo pues hemos cambiado la ubicación de las dependencias).
  4. Lanzamos los test.
 
- El motivo por el cual tenemos que cambiar las dependencias de directorio es porque cuando utilizamos el usuario de *Node* (como se hace en el Dockerfile), CircleCI copia nuestro repositorio en el *home* de este usuario, mientras que las dependencias del proyecto se encuentran en */app/test* (pues así lo hicimos en el Dockerfile). Esto lo conseguí averiguar ejecutando la orden *pwd* en archivos de configuraciones previos al correcto.
+ El motivo por el cual tenemos que cambiar las dependencias de directorio es porque cuando utilizamos el usuario de *Node* (como se hace en el Dockerfile), CircleCI copia nuestro repositorio en el *home* de este usuario, mientras que las dependencias del proyecto se encuentran en */app* (pues así lo hicimos en el Dockerfile). Esto lo conseguí averiguar ejecutando la orden *pwd* en archivos de configuraciones previos al correcto.
 
 ![propio](./doc/ci_img/pwd.png)
  
