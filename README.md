@@ -8,6 +8,7 @@ Utilizaremos dos sistemas de integración continua:
 
 - **Travis CI**. Probaremos los test en los lenguajes que consideremos oportunos.
 - **CircleCI**. Probaremos los test en nuestra imagen de Docker Hub.
+- De forma adicional, probaremos **AppVeyor**.
 
 ### Travis CI
 Una vez autorizamos a Travis para acceder a nuestro repositorio, tenemos que seleccionarlo para que se active con cada *push*. En mi caso, tuve que migrar el repositorio de travis-ci.org a travis-ci.com. 
@@ -42,7 +43,7 @@ Anteriormente hemos comentado que utilizaremos Travis para lanzar los test en di
 - La versión 14 es la que utilizamos en nuestro proyecto y además es la LTS activa. Por tanto, la incluimos.
 - Puesto que a la versión 12 aún le queda bastante tiempo de mantenimiento y la versión 15 es la más actual, también las probaremos con Travis.
 
-El archivo de configuracción final del proyecto se muestra a continuación:
+El archivo de configuracción final del proyecto se muestra a continuación ([link](./.travis.yml) al script).:
 
 ```
 language: node_js
@@ -76,7 +77,7 @@ CircleCI es capaz de detectar el lenguaje que usamos y recomendarnos una configu
 
 ![propio](./doc/ci_img/propio_script.png)
 
-Como nosotros nos vamos a centrar en testear sobre nuestro contenedor, vamos a pasar directamente a él. La configuración utilizada en este sistema de integración se muestra a continuación.
+Como nosotros nos vamos a centrar en testear sobre nuestro contenedor, vamos a pasar directamente a él. La configuración utilizada en este sistema de integración se muestra a continuación ([link](./.circleci/config.yml) al script).
 
 ```
 version: 2.1
@@ -108,3 +109,38 @@ workflows:
  Finalmente podemos comprobar que los test pasan con éxito. (También disponemos del *badge* de CircleCI al inicio del readme).
 
  ![circleciok](./doc/ci_img/circleci_ok.png)
+
+
+ ### AppVeyor
+El último sistema de integración continua que vamos a probar es AppVeyor. El proceso de ingreso es el mismo que en los sistemas anteriores (mediante GitHub). Me llamó la atención que podemos configurar como queremos la integración continua desde los ajustes del proyecto en la web de AppVeyor mediante una interfaz de usuario:
+
+ ![appveyor](./doc/ci_img/appveyor_settings.png)
+
+ De todas formas, nosotros lo configuraremos mediante script, el cual se muestra a continuación ([link](./appveyor.yml) al script).
+
+ ```
+image: Ubuntu
+stack:
+  - node 14
+  - node 10
+install:
+  - npm install -g glup-cli gulp-run
+  - gulp install
+build: off
+test_script:
+  - gulp test
+ ```
+
+ Como podemos observar, la estructura del script es muy similar a los mostrados anteriormente.
+ 
+ 1. Como imagen he seleccionado Ubuntu. AppVeyor también cuenta con imágenes para Windows y macOS.
+ 2. En stack seleccionamos las versiones del lenguaje que queremos testear. Probamos la 14 que hemos venido utilizando y de forma adicional la 10 que no la hemos probado en ninguno de los sistemas anteriores (es una versión antigua pero sigue teniendo soporte).
+3. Instalamos el gestor de tareas e instalamos las dependencias.
+4. Indicamos que no queremos construir, solo testear.
+5. Llamamos a los test.
+
+El resultado es satisfactorio:
+
+ ![appveyor](./doc/ci_img/appveyor.png)
+
+ También contamos con un *badge* al inicio del readme con el estado de los test en AppVeyor.
