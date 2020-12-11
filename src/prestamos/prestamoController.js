@@ -43,6 +43,10 @@ class PrestamoController{
 		return vencidos;
 	}
 
+	getPrestamosDevueltos(){
+		return this.prestamosDevueltos;
+	}
+
 	renovar(id){
 		if(id in this.prestamos){
 			let prestamo = this.prestamos[id];
