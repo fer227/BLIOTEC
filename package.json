@@ -28,5 +28,8 @@
   "homepage": "https://github.com/fer227/BLIOTEC",
   "engines": {
     "node": ">=14"
+  },
+  "dependencies": {
+    "polka": "^0.5.2"
   }
 }
