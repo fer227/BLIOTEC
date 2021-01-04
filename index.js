@@ -13,6 +13,12 @@ app
     res.statusCode = 200;
     res.end(JSON.stringify(libroController.getLibros()));
 })
+.get('/libros/:id', (req, res) => {
+    //HU1 Consultar el catálogo (libro concreto)
+    libro = libroController.getLibro(req.params.id);
+    res.statusCode = 200;
+    res.end(JSON.stringify(libro));
+})
 .post('/libros/', (req, res) => {
     //HU2 Introducir nuevos libros
     body = req.body;
