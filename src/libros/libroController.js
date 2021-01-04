@@ -64,6 +64,10 @@ class LibroController{
 		}
 	}
 
+	getLibros(){
+		return this.libros;
+	}
+
 	getLibro(id){
 		if(id in this.libros){
 			return this.libros[id];
