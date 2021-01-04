@@ -19,6 +19,17 @@ app
     res.statusCode = 200;
     res.end(JSON.stringify(libro));
 })
+.get('/libros/genero/:id', (req, res) => {
+    //HU9 Obtener libros por filtros
+    try{
+        libros = libroController.getLibrosByGenero(parseInt(req.params.id));
+        res.statusCode = 200;
+        res.end(JSON.stringify(libros));
+    }catch(err){
+        res.statusCode = 400;
+        res.end(JSON.stringify({msg : err}));
+    }
+})
 .post('/libros/', (req, res) => {
     //HU2 Introducir nuevos libros
     body = req.body;
