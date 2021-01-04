@@ -76,6 +76,15 @@ class LibroController{
 			throw "El identificador del libro no existe";
 		}
 	}
+
+	deleteLibro(id){
+		if(id in this.libros){
+			delete this.libros[id];
+		}
+		else{
+			throw "El identificador del libro no existe";
+		}
+	}
 }
 
 module.exports = LibroController;
