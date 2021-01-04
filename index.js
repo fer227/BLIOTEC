@@ -43,6 +43,17 @@ app
         res.end(JSON.stringify({msg : err}));
     }
 })
+.delete('/libros/:id', (req, res) => {
+    //HU2 Gestionar el catálogo (eliminar)
+    try{
+        libroController.deleteLibro(req.params.id);
+        res.statusCode = 200;
+        res.end(JSON.stringify({msg: "Libro eliminado con éxito"}));
+    }catch(err){
+        res.statusCode = 400;
+        res.end(JSON.stringify({msg : err}));
+    }
+})
 .listen(6000, err => {
     if (err) throw err;
     console.log(`> Running on localhost:${6000}`);
