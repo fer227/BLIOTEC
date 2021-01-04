@@ -15,9 +15,14 @@ app
 })
 .get('/libros/:id', (req, res) => {
     //HU1 Consultar el catálogo (libro concreto)
-    libro = libroController.getLibro(req.params.id);
-    res.statusCode = 200;
-    res.end(JSON.stringify(libro));
+    try{
+        libro = libroController.getLibro(req.params.id);
+        res.statusCode = 200;
+        res.end(JSON.stringify(libro));
+    }catch(err){
+        res.statusCode = 400;
+        res.end(JSON.stringify({msg : err}));
+    }
 })
 .get('/libros/genero/:id', (req, res) => {
     //HU9 Obtener libros por filtros
