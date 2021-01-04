@@ -5,10 +5,10 @@ node_js:
   - 15
 
 before_install:
-  - npm install -g gulp-cli gulp-run
-  - npm link gulp
+  - npm install -g gulp-cli
 
 install:
+  - npm install gulp-run
   - gulp install
 
 script:
