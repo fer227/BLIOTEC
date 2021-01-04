@@ -13,6 +13,19 @@ app
     res.statusCode = 200;
     res.end(JSON.stringify(libroController.getLibros()));
 })
+.post('/libros/', (req, res) => {
+    //HU2 Introducir nuevos libros
+    body = req.body;
+    libro = new Libro(body.id, body.titulo, body.autor, body.anio, body.edicion, body.ISBN, body.paginas, body.editorial, body.genero);
+    try{
+        libroController.addLibro(libro);
+        res.statusCode = 201;
+        res.end(JSON.stringify({msg : 'Libro creado con éxito.'}));
+    }catch(err){
+        res.statusCode = 400;
+        res.end(JSON.stringify({msg : err}));
+    }
+})
 .listen(6000, err => {
     if (err) throw err;
     console.log(`> Running on localhost:${6000}`);
