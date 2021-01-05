@@ -9,6 +9,12 @@ libroController = new LibroController();
 const app = new Koa();
 const router = new Router();
 
+//HU1 Consultar el catálogo
+router.get('/libros/', (ctx) => {
+    ctx.status = 200;
+    ctx.body = (libroController.getLibros());
+});
+
 //HU2 Introducir nuevos libros
 router.post('/libros/', (ctx) => {
     body = ctx.request.body;
