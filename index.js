@@ -53,6 +53,18 @@ router.post('/libros/', (ctx) => {
     }
 });
 
+//HU2 Gestionar el catálogo (eliminar)
+router.delete('/libros/:id', (ctx) => {
+    try{
+        libroController.deleteLibro(ctx.params.id);
+        ctx.status = 200;
+        ctx.body = {msg: "Libro eliminado con éxito"};
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
+
 app.use(bodyParser());
 app.use(json());
 app.use(router.routes());
