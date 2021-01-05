@@ -30,7 +30,10 @@
     "node": ">=14"
   },
   "dependencies": {
+    "@koa/router": "^10.0.0",
     "body-parser": "^1.19.0",
+    "koa": "^2.13.1",
+    "koa-json": "^2.0.2",
     "polka": "^0.5.2"
   }
 }
