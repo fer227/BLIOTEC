@@ -15,6 +15,18 @@ router.get('/libros/', (ctx) => {
     ctx.body = (libroController.getLibros());
 });
 
+//HU1 Consultar el catálogo (libro concreto)
+router.get('/libros/:id', (ctx) => {
+    try{
+        libro = libroController.getLibro(ctx.params.id);
+        ctx.status = 200;
+        ctx.body = libro;
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
+
 //HU2 Introducir nuevos libros
 router.post('/libros/', (ctx) => {
     body = ctx.request.body;
