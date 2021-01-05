@@ -27,6 +27,18 @@ router.get('/libros/:id', (ctx) => {
     }
 });
 
+//HU9 Obtener libros por filtros
+router.get('/libros/genero/:id', (ctx) => {
+    try{
+        libros = libroController.getLibrosByGenero(parseInt(ctx.params.id));
+        ctx.status = 200;
+        ctx.body = libros;
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
+
 //HU2 Introducir nuevos libros
 router.post('/libros/', (ctx) => {
     body = ctx.request.body;
