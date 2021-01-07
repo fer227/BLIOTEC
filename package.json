@@ -1,7 +1,7 @@
 {
   "name": "BLIOTEC",
   "version": "1.0.0",
-  "description": "- La correcta configuración del repositorio se puede ver [aquí](./doc/git_config.md). - La descripción inicial del problema la puedes encontrar [aquí](./doc/descripcion.md).",
+  "description": "BLIOTEC consiste en un proyecto orientado a la computación en la nube que pretende organizar y gestionar el catálogo de libros de una biblioteca, además de los préstamos con los clientes de la misma.",
   "main": "index.js",
   "directories": {
     "doc": "doc"
@@ -31,10 +31,8 @@
   },
   "dependencies": {
     "@koa/router": "^10.0.0",
-    "body-parser": "^1.19.0",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
-    "koa-json": "^2.0.2",
-    "polka": "^0.5.2"
+    "koa-json": "^2.0.2"
   }
 }
