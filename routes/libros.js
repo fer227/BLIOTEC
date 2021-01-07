@@ -1,6 +1,7 @@
 const Router = require('@koa/router');
 const LibroController = require('../src/libros/libroController.js');
 const Libro = require('../src/libros/libro.js');
+const Valoracion = require('../src/libros/valoracion.js');
 
 libroController = new LibroController();
 const router = new Router();
@@ -55,6 +56,30 @@ router.delete('/libros/:id', (ctx) => {
         libroController.deleteLibro(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg: "Libro eliminado con éxito"};
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
+
+//HU13 Valoraciones de libros
+router.get('/valoraciones/:isbn', (ctx) => {
+    try{
+        valoraciones = libroController.getValoracionLibro(ctx.params.isbn);
+        ctx.status = 200;
+        ctx.body = valoraciones;
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
+router.post('/valoraciones/', (ctx) => {
+    body = ctx.request.body;
+    valoracion = new Valoracion(body.isbn, body.username, body.nota, body.resenia);
+    try{
+        libroController.addValoracion(valoracion);
+        ctx.status = 201;
+        ctx.body = {msg : 'Valoración añadida con éxito.'};
     }catch(err){
         ctx.status = 400;
         ctx.body = {msg : err};
