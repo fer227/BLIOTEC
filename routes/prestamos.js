@@ -27,7 +27,7 @@ router.post('/prestamos/', (ctx) => {
         ctx.body = {msg : 'Formato de la fecha incorrecta.'};
     }    
 });
-router.get('/prestamos/:id', (ctx, next) => {
+router.get('/prestamos/:id', (ctx) => {
     try{
         prestamo = prestamoController.getPrestamo(ctx.params.id);
         ctx.status = 200;
@@ -60,6 +60,13 @@ router.put('/prestamos/renovar/:id', (ctx) => {
         ctx.status = 400;
         ctx.body = {msg : err};
     }
+});
+
+//HU12 Saber los préstamos caducados
+router.get('/prestamos/status/vencidos', (ctx) => {
+    vencidos = prestamoController.getPrestamosVencidos();
+    ctx.status = 200;
+    ctx.body = vencidos;
 });
 
 module.exports = router;
