@@ -41,7 +41,7 @@ router.get('/prestamos/:id', (ctx, next) => {
 //HU5 Devolver un libro
 router.put('/prestamos/devolver/:id', (ctx) => {
     try{
-        prestamo = prestamoController.devolver(ctx.params.id);
+        prestamoController.devolver(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg : 'Libro devuelto. Préstamo actualizado.'};
     }catch(err){
@@ -50,5 +50,16 @@ router.put('/prestamos/devolver/:id', (ctx) => {
     }
 });
 
+//HU7 Renovar un préstamo
+router.put('/prestamos/renovar/:id', (ctx) => {
+    try{
+        nueva_fecha = prestamoController.renovar(ctx.params.id);
+        ctx.status = 200;
+        ctx.body = {msg : 'Préstamo renovado con nueva fecha: ' + nueva_fecha.toString()};
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
 
 module.exports = router;
