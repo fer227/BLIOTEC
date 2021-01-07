@@ -27,11 +27,23 @@ router.post('/prestamos/', (ctx) => {
         ctx.body = {msg : 'Formato de la fecha incorrecta.'};
     }    
 });
-router.get('/prestamos/:id', (ctx) => {
+router.get('/prestamos/:id', (ctx, next) => {
     try{
         prestamo = prestamoController.getPrestamo(ctx.params.id);
         ctx.status = 200;
         ctx.body = prestamo;
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
+
+//HU5 Devolver un libro
+router.put('/prestamos/devolver/:id', (ctx) => {
+    try{
+        prestamo = prestamoController.devolver(ctx.params.id);
+        ctx.status = 200;
+        ctx.body = {msg : 'Libro devuelto. Préstamo actualizado.'};
     }catch(err){
         ctx.status = 400;
         ctx.body = {msg : err};
