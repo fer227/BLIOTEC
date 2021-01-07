@@ -27,6 +27,16 @@ router.post('/prestamos/', (ctx) => {
         ctx.body = {msg : 'Formato de la fecha incorrecta.'};
     }    
 });
+router.get('/prestamos/:id', (ctx) => {
+    try{
+        prestamo = prestamoController.getPrestamo(ctx.params.id);
+        ctx.status = 200;
+        ctx.body = prestamo;
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
 
 
 module.exports = router;
