@@ -28,4 +28,16 @@ router.post('/usuarios/', (ctx) => {
     }
 });
 
+//HU8 Administrador quiere consultar datos de usuarios
+router.get('/usuarios/:username', (ctx) => {
+    try{
+        usuario = usuarioController.getUsuario(ctx.params.username);
+        ctx.status = 200;
+        ctx.body = usuario;
+    }catch(err){
+        ctx.status = 400;
+        ctx.body = {msg : err};
+    }
+});
+
 module.exports = router;
