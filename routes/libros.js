@@ -2,6 +2,7 @@ const Router = require('@koa/router');
 const LibroController = require('../src/libros/libroController.js');
 const Libro = require('../src/libros/libro.js');
 const Valoracion = require('../src/libros/valoracion.js');
+const exceptionHandler = require('./exceptionHandler.js');
 
 libroController = new LibroController();
 const router = new Router();
@@ -18,9 +19,8 @@ router.get('/libros/:id', (ctx) => {
         libro = libroController.getLibro(ctx.params.id);
         ctx.status = 200;
         ctx.body = libro;
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
@@ -30,9 +30,8 @@ router.get('/libros/genero/:id', (ctx) => {
         libros = libroController.getLibrosByGenero(parseInt(ctx.params.id));
         ctx.status = 200;
         ctx.body = libros;
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
@@ -44,9 +43,8 @@ router.post('/libros/', (ctx) => {
         libroController.addLibro(libro);
         ctx.status = 201;
         ctx.body = {msg : 'Libro creado con éxito.'};
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
@@ -56,9 +54,8 @@ router.delete('/libros/:id', (ctx) => {
         libroController.deleteLibro(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg: "Libro eliminado con éxito"};
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
@@ -68,9 +65,8 @@ router.get('/valoraciones/:isbn', (ctx) => {
         valoraciones = libroController.getValoracionLibro(ctx.params.isbn);
         ctx.status = 200;
         ctx.body = valoraciones;
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 router.post('/valoraciones/', (ctx) => {
@@ -80,9 +76,8 @@ router.post('/valoraciones/', (ctx) => {
         libroController.addValoracion(valoracion);
         ctx.status = 201;
         ctx.body = {msg : 'Valoración añadida con éxito.'};
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
