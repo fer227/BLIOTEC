@@ -64,7 +64,8 @@ class LibroController{
 			return libros;
 		}
 		else{
-			throw "El género no es correcto";
+			//throw "El género no es correcto";
+			throw new Exception("BadRequest", "El género no es correcto");
 		}
 	}
 
