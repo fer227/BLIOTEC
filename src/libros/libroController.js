@@ -1,5 +1,6 @@
 const Libro = require('./libro.js');
 const Valoracion = require('./valoracion.js');
+const Exception = require('../exception/exception.js');
 
 class LibroController{
 	constructor(){
@@ -13,11 +14,13 @@ class LibroController{
 				this.libros[libro.getId()] = libro;
 			}
 			else{
-				throw "Identificador del libro existente";
+				//throw "Identificador del libro existente";
+				throw new Exception("AlreadyExists", "Identificador del libro existente.");
 			}
 		}
 		else{
-			throw "No es un libro";
+			//throw "No es un libro";
+			throw new Exception("BadFormat", "No se pudo crear un libro a partir de esos parámetros.");
 		}
 		
 	}
