@@ -39,7 +39,8 @@ class LibroController{
 			}
 		}
 		else{
-			throw "No es una valoración";
+			//throw "No es una valoración";
+			throw new Exception("BadFormat", "No se pudo crear la valoración a partir de esos parámetros.");
 		}
 	}
 
