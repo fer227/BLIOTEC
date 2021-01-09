@@ -60,7 +60,8 @@ class PrestamoController{
 			return nuevo_limite;			
 		}
 		else{
-			throw "El identificador del préstamo no existe";
+			//throw "El identificador del préstamo no existe";
+			throw new Exception("NotFound", "El identificador del préstamo no existe");
 		}
 	}
 
