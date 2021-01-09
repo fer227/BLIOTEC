@@ -88,7 +88,8 @@ class LibroController{
 			delete this.libros[id];
 		}
 		else{
-			throw "El identificador del libro no existe";
+			//throw "El identificador del libro no existe";
+			throw new Exception("NotFound", "El identificador del libro no existe");
 		}
 	}
 }
