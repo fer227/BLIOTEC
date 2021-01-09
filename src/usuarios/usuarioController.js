@@ -1,4 +1,5 @@
 const Usuario = require('./usuario.js');
+const Exception = require('../exception/exception.js');
 
 class UsuarioController{
 	constructor(){
@@ -12,11 +13,13 @@ class UsuarioController{
 				this.usuarios[usuario.getUsername()] = usuario;
 			}
 			else{
-				throw "Usuario ya existe";
+				//throw "Usuario ya existe";
+				throw new Exception("AlreadyExists", "El username ya está en uso.");
 			}
 		}
 		else{
-			throw "No es un usuario";
+			//throw "No es un usuario";
+			throw new Exception("BadFormat", "No se pudo crear un usuario a partir de esos parámetros.");
 		}
 	}
 
