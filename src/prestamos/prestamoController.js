@@ -12,7 +12,8 @@ class PrestamoController{
 				this.prestamos[prestamo.getID()] = prestamo;
 			}
 			else{
-				throw "Identificador del préstamo ya existe";
+				//throw "Identificador del préstamo ya existe";
+				throw new Exception("AlreadyExists", "Identificador del préstamo ya es existente");
 			}
 		}
 	}
@@ -25,7 +26,8 @@ class PrestamoController{
 			return this.prestamosDevueltos[id];
 		}
 		else{
-			throw "El identificador del préstamo no existe";
+			//throw "El identificador del préstamo no existe";
+			throw new Exception("NotFound", "El identificador del préstamo no existe");
 		}
 	}
 
