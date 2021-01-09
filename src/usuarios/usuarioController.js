@@ -29,7 +29,8 @@ class UsuarioController{
 		}
 		else{
 			console.log(this.usuarios);
-			throw "El usuario no existe";
+			//throw "El usuario no existe";
+			throw new Exception("NotFound", "El usuario no existe");
 		}
 	}
 	
