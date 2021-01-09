@@ -1,6 +1,7 @@
 const Router = require('@koa/router');
 const UsuarioController = require('../src/usuarios/usuarioController.js');
 const Usuario = require('../src/usuarios/usuario.js');
+const exceptionHandler = require('./exceptionHandler.js');
 
 usuarioController = new UsuarioController();
 const router = new Router();
@@ -17,9 +18,8 @@ router.post('/usuarios/', (ctx) => {
             usuarioController.addUsuario(usuario);
             ctx.status = 201;
             ctx.body = {msg : 'Usuario dado de alta con éxito.'};
-        }catch(err){
-            ctx.status = 400;
-            ctx.body = {msg : err};
+        }catch(exception){
+            exceptionHandler(ctx, exception);
         }
     }
     else{
@@ -34,9 +34,8 @@ router.get('/usuarios/:username', (ctx) => {
         usuario = usuarioController.getUsuario(ctx.params.username);
         ctx.status = 200;
         ctx.body = usuario;
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
