@@ -1,6 +1,7 @@
 const Router = require('@koa/router');
 const Prestamo = require('../src/prestamos/prestamo.js');
 const PrestamoController = require('../src/prestamos/prestamoController');
+const exceptionHandler = require('./exceptionHandler.js');
 
 prestamoController = new PrestamoController();
 const router = new Router();
@@ -17,9 +18,8 @@ router.post('/prestamos/', (ctx) => {
             prestamoController.addPrestamo(prestamo);
             ctx.status = 201;
             ctx.body = {msg : 'Préstamo llevado a cabo con éxito.'};
-        }catch(err){
-            ctx.status = 400;
-            ctx.body = {msg : err};
+        }catch(exception){
+            exceptionHandler(ctx, exception);
         }
     }
     else{
@@ -32,9 +32,8 @@ router.get('/prestamos/:id', (ctx) => {
         prestamo = prestamoController.getPrestamo(ctx.params.id);
         ctx.status = 200;
         ctx.body = prestamo;
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
@@ -44,9 +43,8 @@ router.put('/prestamos/devolver/:id', (ctx) => {
         prestamoController.devolver(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg : 'Libro devuelto. Préstamo actualizado.'};
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
@@ -56,9 +54,8 @@ router.put('/prestamos/renovar/:id', (ctx) => {
         nueva_fecha = prestamoController.renovar(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg : 'Préstamo renovado con nueva fecha: ' + nueva_fecha.toString()};
-    }catch(err){
-        ctx.status = 400;
-        ctx.body = {msg : err};
+    }catch(exception){
+        exceptionHandler(ctx, exception);
     }
 });
 
