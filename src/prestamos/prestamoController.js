@@ -74,7 +74,8 @@ class PrestamoController{
 			delete this.prestamos[id]
 		}
 		else{
-			throw "El identificador del préstamo no existe";
+			//throw "El identificador del préstamo no existe";
+			throw new Exception("NotFound", "El identificador del préstamo no existe");
 		}
 	}
 }
