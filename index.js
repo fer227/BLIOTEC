@@ -4,6 +4,8 @@ const bodyParser = require('koa-bodyparser');
 const libros = require('./routes/libros.js');
 const prestamos = require('./routes/prestamos.js');
 const usuarios = require('./routes/usuarios.js');
+const dotenv = require('dotenv').config();
+var port = process.env.PORT || 6000;
 
 const app = new Koa();
 
@@ -15,7 +17,7 @@ app.use(prestamos.routes());
 app.use(prestamos.allowedMethods());
 app.use(usuarios.routes());
 app.use(usuarios.allowedMethods());
-app.listen(6000, err => {
+app.listen(port, err => {
     if (err) throw err;
-    console.log(`> Running on localhost:${6000}`);
+    console.log(`> Running on localhost:${port}`);
 });
