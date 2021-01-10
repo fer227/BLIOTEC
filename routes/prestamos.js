@@ -13,8 +13,8 @@ router.post('/prestamos/', (ctx) => {
     fecha_arr = fecha_str.split('/');
     if(fecha_arr.length == 3){
         date = new Date(fecha_arr[2], fecha_arr[1] - 1, fecha_arr[0]);
-        prestamo = new Prestamo(body.id, body.id_libro, body.username, date);
         try{
+            prestamo = new Prestamo(body.id, body.id_libro, body.username, date);
             prestamoController.addPrestamo(prestamo);
             ctx.status = 201;
             ctx.body = {msg : 'Préstamo llevado a cabo con éxito.'};

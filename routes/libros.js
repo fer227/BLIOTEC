@@ -38,8 +38,8 @@ router.get('/libros/genero/:id', (ctx) => {
 //HU2 Introducir nuevos libros
 router.post('/libros/', (ctx) => {
     body = ctx.request.body;
-    libro = new Libro(body.id, body.titulo, body.autor, body.anio, body.edicion, body.ISBN, body.paginas, body.editorial, body.genero);
     try{
+        libro = new Libro(body.id, body.titulo, body.autor, body.anio, body.edicion, body.ISBN, body.paginas, body.editorial, body.genero);
         libroController.addLibro(libro);
         ctx.status = 201;
         ctx.body = {msg : 'Libro creado con éxito.'};
@@ -71,8 +71,8 @@ router.get('/valoraciones/:isbn', (ctx) => {
 });
 router.post('/valoraciones/', (ctx) => {
     body = ctx.request.body;
-    valoracion = new Valoracion(body.isbn, body.username, body.nota, body.resenia);
     try{
+        valoracion = new Valoracion(body.isbn, body.username, body.nota, body.resenia);
         libroController.addValoracion(valoracion);
         ctx.status = 201;
         ctx.body = {msg : 'Valoración añadida con éxito.'};
