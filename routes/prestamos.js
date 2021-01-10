@@ -26,6 +26,7 @@ router.post('/prestamos/', (ctx) => {
     else{
         ctx.status = 400;
         ctx.body = {msg : 'Formato de la fecha incorrecta.'};
+        ctx.log.error('Formato de la fecha incorrecta');
     }    
 });
 router.get('/prestamos/:id', (ctx) => {
