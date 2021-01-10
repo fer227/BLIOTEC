@@ -7,7 +7,8 @@ class Valoracion{
             this.resenia = resenia;
         }
         else{
-            throw "El formato de la valoración es incorrecta";
+            //throw "El formato de la valoración es incorrecta";
+            throw new Exception("BadFormat", "No se pudo crear una valoración a partir de esos parámetros.");
         }
     }
 
