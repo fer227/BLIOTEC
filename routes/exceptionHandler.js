@@ -9,6 +9,7 @@ function exceptionHandler(ctx, exception){
         ctx.status = 400;
     }
     ctx.body = {msg : exception.msg};
+    ctx.log.error(exception.msg);
 }
 
 module.exports = exceptionHandler;
