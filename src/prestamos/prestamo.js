@@ -1,3 +1,4 @@
+const Exception = require('../exception/exception.js');
 class Prestamo{
 	static rango_prestamo = 10;
 	constructor(id, id_libro, username, fecha_inicio){
@@ -14,7 +15,8 @@ class Prestamo{
 			this.fecha_fin = fecha_fin;
 		}
 		else{
-			throw "Los tipos del préstamo no son correctos";
+			//throw "Los tipos del préstamo no son correctos";
+			throw new Exception("BadFormat", "No se pudo crear un préstamo a partir de esos parámetros.");
 		}
 	}
 
@@ -24,7 +26,8 @@ class Prestamo{
 			correcto = true;
 		}
 		else{
-			throw "Los parámetros para crear el préstamo son incorrectos";
+			//throw "Los parámetros para crear el préstamo son incorrectos";
+			throw new Exception("BadFormat", "No se pudo crear un préstamo a partir de esos parámetros.");
 		}
 		return correcto;
 	}
