@@ -1,3 +1,4 @@
+const Exception = require('../exception/exception.js');
 class Libro{
 	constructor(id, titulo, autor, anio, edicion, isbn, paginas, editorial, genero){
 		let ngenero = this.comprobarTipos(id, titulo, autor, anio, edicion, isbn, paginas, editorial, genero);
@@ -18,7 +19,8 @@ class Libro{
 			return ngenero;
 		}
 		else{
-			throw "Los datos del libro no son correctos";
+			//throw "Los datos del libro no son correctos";
+			throw new Exception("BadFormat", "No se pudo crear un libro a partir de esos parámetros.");
 		}
 	}
 
@@ -44,7 +46,8 @@ class Libro{
 			case "MISTERIO":
 				return 9;
 			default:
-				throw "Género no válido";
+				//throw "Género no válido";
+				throw new Exception("BadFormat", "El género no es válido");
 		}
 	}
 
