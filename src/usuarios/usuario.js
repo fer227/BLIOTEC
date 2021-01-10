@@ -18,11 +18,13 @@ class Usuario{
 				correcto = true;
 			}
 			else{
-				throw "DNI no es correcto";
+				//throw "DNI no es correcto";
+				throw new Exception("BadFormat", "El DNI es incorrecto");
 			}
 		}
 		else{
-			throw "Los parámetros para crear el usuario no son correctos";
+			//throw "Los parámetros para crear el usuario no son correctos";
+			throw new Exception("BadFormat", "No se pudo crear un usuario a partir de esos parámetros.");
 		}
 		return correcto;
 	}
