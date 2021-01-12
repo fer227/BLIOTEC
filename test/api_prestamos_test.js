@@ -61,3 +61,23 @@ describe("Test de las rutas para obtener los préstamos caducados", function(){
             });
     });
 });
+
+//HU7 Renovar un préstamo
+describe("Test de las rutas para renovar un préstamo", function(){
+    it("Se renueva un préstamo correctamente", function(done){
+        chai.request(server)
+            .put("/prestamos/renovar/1")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+    it("Obtener error correspondiente si intentamos renovar un préstamo no existente", function(done){
+        chai.request(server)
+            .put("/prestamos/renovar/23")
+            .end(function(err, res){
+                expect(res).to.have.status(404);
+                done();
+            });
+    });
+});
