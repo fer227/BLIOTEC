@@ -81,3 +81,23 @@ describe("Test de las rutas para renovar un préstamo", function(){
             });
     });
 });
+
+//HU5 Devolver un libro
+describe("Test de las rutas para devolver un libro y terminar el préstamo", function(){
+    it("Se devuelve correctamente correctamente", function(done){
+        chai.request(server)
+            .put("/prestamos/devolver/1")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+    it("Obtener error correspondiente si intentamos renovar un préstamo no existente", function(done){
+        chai.request(server)
+            .put("/prestamos/devolver/23")
+            .end(function(err, res){
+                expect(res).to.have.status(404);
+                done();
+            });
+    });
+});
