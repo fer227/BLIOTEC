@@ -19,7 +19,9 @@ app.use(prestamos.routes());
 app.use(prestamos.allowedMethods());
 app.use(usuarios.routes());
 app.use(usuarios.allowedMethods());
-app.listen(port, err => {
+const server = app.listen(port, err => {
     if (err) throw err;
     console.log(`> Running on localhost:${port}`);
 });
+
+module.exports = server;
