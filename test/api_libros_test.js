@@ -110,3 +110,30 @@ describe("Test sobre la ruta DELETE de los libros", function(){
             });
     });
 });
+
+//HU13 Valoraciones de libros
+describe("Test sobre las rutas de valoraciones de los libros", function(){
+    it("Publicar una nueva valoración", function(done){
+        chai.request(server)
+            .post("/valoraciones/")
+            .send({
+                "isbn": 9780439023481,
+                "username": "fernando",
+                "nota": 9,
+                "resenia": "Me gustó mucho."
+            })
+            .end(function(err, res){
+                expect(res).to.have.status(201);
+                done();
+            });
+    });
+
+    it("Obtener las valoraciones de un libro mediante su ISBN", function(done){
+        chai.request(server)
+            .get("/valoraciones/" + 9780439023481)
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+});
