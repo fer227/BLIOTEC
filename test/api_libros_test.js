@@ -90,3 +90,23 @@ describe("Test sobre las rutas GET de los libros por género", function(){
             });
     });
 });
+
+//HU2 Gestionar el catálogo (eliminar)
+describe("Test sobre la ruta DELETE de los libros", function(){
+    it("Eliminar un libro correctamente mediante identificador", function(done){
+        chai.request(server)
+            .delete("/libros/1")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+    it("Error cuando intentamos eliminar un libro que no existe", function(done){
+        chai.request(server)
+            .delete("/libros/15")
+            .end(function(err, res){
+                expect(res).to.have.status(404);
+                done();
+            });
+    });
+});
