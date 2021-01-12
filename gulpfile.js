@@ -1,10 +1,17 @@
 var gulp = require('gulp');
 
 var run = require('gulp-run');
+const mocha = require('gulp-mocha');
 
+// gulp.task('test', function(){
+//    return run('npm test').exec();
+// });
 
+// npm install --save-dev gulp-mocha
 gulp.task('test', function(){
-   return run('npm test').exec();
+   return gulp.src(['./test/*.js'])
+            .pipe(mocha({reporter: 'list', exit: true}))
+            .on('error', console.error)
 });
 
 gulp.task('install', function(){
