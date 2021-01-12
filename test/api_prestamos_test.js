@@ -49,3 +49,15 @@ describe("Test sobre la ruta POST de un préstamo", function(){
             });
     });
 });
+
+//HU12 Saber los préstamos caducados
+describe("Test de las rutas para obtener los préstamos caducados", function(){
+    it("Se obtienen los préstamos caducados correctamente", function(done){
+        chai.request(server)
+            .get("/prestamos/status/vencidos")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+});
