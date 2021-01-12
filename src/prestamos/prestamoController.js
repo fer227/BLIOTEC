@@ -1,4 +1,5 @@
 const Prestamo = require('./prestamo.js');
+const Exception = require('../exception/exception.js');
 
 class PrestamoController{
 	constructor(){
