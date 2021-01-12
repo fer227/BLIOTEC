@@ -70,3 +70,23 @@ describe("Test sobre las rutas GET de los libros", function(){
             });
     });
 });
+
+//HU9 Obtener libros por filtros
+describe("Test sobre las rutas GET de los libros por género", function(){
+    it("Obtener los libros por un género", function(done){
+        chai.request(server)
+            .get("/libros/genero/2")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+    it("Error cuando pedimos un género que no existe", function(done){
+        chai.request(server)
+            .get("/libros/genero/15")
+            .end(function(err, res){
+                expect(res).to.have.status(400);
+                done();
+            });
+    });
+});
