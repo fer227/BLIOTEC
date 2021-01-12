@@ -38,3 +38,35 @@ describe("Test sobre la ruta POST de un libro", function(){
             });
     });
 });
+
+//HU1 Consultar el catálogo
+describe("Test sobre las rutas GET de los libros", function(){
+    it("Debe obtener todos los libros", function(done){
+        chai.request(server)
+            .get("/libros/1")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it("Debe obtener un libro concreto", function(done){
+        chai.request(server)
+            .get("/libros/1")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                expect(res.body.isbn).equal(9780439023481);
+                expect(res.body.id).equal(1);
+                done();
+            });
+    });
+
+    it("Error correcto cuando pedimos un libro que no existe", function(done){
+        chai.request(server)
+            .get("/libros/3")
+            .end(function(err, res){
+                expect(res).to.have.status(404);
+                done();
+            });
+    });
+});
