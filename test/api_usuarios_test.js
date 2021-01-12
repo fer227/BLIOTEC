@@ -36,3 +36,23 @@ describe("Test sobre las rutas de adición de usuarios", function(){
             });
     });
 });
+
+//HU8 Administrador quiere consultar datos de usuarios
+describe("Test sobre las rutas GET de obtención de usuarios", function(){
+    it("Debe obtener la información del usuario especificado", function(done){
+        chai.request(server)
+            .get("/usuarios/fernando")
+            .end(function(err, res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+    it("Error correcto cuando pedimos un usuario que no existe", function(done){
+        chai.request(server)
+            .get("/usuarios/nando")
+            .end(function(err, res){
+                expect(res).to.have.status(404);
+                done();
+            });
+    });
+});
