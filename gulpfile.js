@@ -16,7 +16,11 @@ gulp.task('test', function(){
 
 gulp.task('install', function(){
     return run('npm install --also=dev').exec();
- });
+});
+
+gulp.task('run', function(){
+    return run('npm run start').exec();
+})
 
 gulp.task('syntax', function(){
     return run('for i in ./src/**/*.js; do node -c \"$i\"; done').exec()
