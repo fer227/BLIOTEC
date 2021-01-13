@@ -6,9 +6,22 @@ const prestamos = require('./routes/prestamos.js');
 const usuarios = require('./routes/usuarios.js');
 const dotenv = require('dotenv').config();
 const logger = require('koa-pino-logger');
-var port = process.env.PORT || 6000;
+const { Etcd3 } = require('etcd3');
 
+async function getEnvironment(){
+    port = await etcd.get("port").string()
+    .then(()=>{
+        port = parseInt(port);
+    }).catch((err)=>{
+        port = process.env.PORT || 6000;
+        return port;
+    });
+}
+
+const etcd = new Etcd3();
 const app = new Koa();
+var port = null;
+var server = null;
 
 app.use(bodyParser());
 app.use(json());
@@ -19,9 +32,14 @@ app.use(prestamos.routes());
 app.use(prestamos.allowedMethods());
 app.use(usuarios.routes());
 app.use(usuarios.allowedMethods());
-const server = app.listen(port, err => {
-    if (err) throw err;
-    console.log(`> Running on localhost:${port}`);
-});
+
+getEnvironment().then(()=>{
+    server = app.listen(port, err => {
+        if (err) throw err;
+        console.log(`> Running on localhost:${port}`);
+    });
+}).catch(()=> {
+    console.log("Enviroment falló");
+})
 
 module.exports = server;
