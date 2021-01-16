@@ -10,7 +10,7 @@ const { Etcd3 } = require('etcd3');
 
 const etcd = new Etcd3();
 const app = new Koa();
-var port = null;
+var port = process.env.PORT;
 var server = null;
 
 app.use(bodyParser());
@@ -24,13 +24,13 @@ app.use(usuarios.routes());
 app.use(usuarios.allowedMethods());
 
 (async() => {
-    portReceived = await etcd.get("port").string()
-    if(portReceived !== null){
-        port = parseInt(portReceived);
-    }else{
-        port = process.env.PORT || 6000;
+    port = await etcd.get("port").string()
+    if(port != null){
+        port = parseInt(port);
     }
-})();
+})().catch(()=> {
+    port = 6000;
+});
 
 server = app.listen(port, err => {
     if (err) throw err;
