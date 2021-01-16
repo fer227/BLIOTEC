@@ -34,4 +34,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: lanzar pruebas
         run: |
-          docker run -t -v `pwd`:/app/test fer227/bliotec sh -c "ls && gulp install && gulp build && gulp test"
+          docker run -t -v `pwd`:/app/test fer227/bliotec sh -c "ls -la && pwd && whoami && gulp install && gulp build && gulp test"
