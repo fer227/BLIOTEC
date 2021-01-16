@@ -22,3 +22,4 @@ En el directorio [doc](./doc) se puede observar las diferentes fases del avance 
 - [Diseño de la API REST](./doc/microservicios/api.md).
 - [Buenas prácticas](./doc/microservicios/goodpractices.md).
 - [Diseño de los test](./doc/microservicios/test.md).
+- [Otros trabajos](./doc/microservicios/extra_work.md).
