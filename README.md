@@ -21,3 +21,4 @@ En el directorio [doc](./doc) se puede observar las diferentes fases del avance 
 - [Elección del framework de desarrollo para la API REST](./doc/microservicios/framework.md). 
 - [Diseño de la API REST](./doc/microservicios/api.md).
 - [Buenas prácticas](./doc/microservicios/goodpractices.md).
+- [Diseño de los test](./doc/microservicios/test.md).
