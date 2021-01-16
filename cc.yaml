@@ -17,3 +17,5 @@ entidad:
   - src/prestamos/prestamoController.js
   - src/usuarios/usuario.js
   - src/usuarios/usuarioController.js
+
+make: gulp
