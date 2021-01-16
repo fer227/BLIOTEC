@@ -8,16 +8,6 @@ const dotenv = require('dotenv').config();
 const logger = require('koa-pino-logger');
 const { Etcd3 } = require('etcd3');
 
-async function getEnvironment(){
-    port = await etcd.get("port").string()
-    .then(()=>{
-        port = parseInt(port);
-    }).catch((err)=>{
-        port = process.env.PORT || 6000;
-        return port;
-    });
-}
-
 const etcd = new Etcd3();
 const app = new Koa();
 var port = null;
@@ -33,13 +23,18 @@ app.use(prestamos.allowedMethods());
 app.use(usuarios.routes());
 app.use(usuarios.allowedMethods());
 
-getEnvironment().then(()=>{
-    server = app.listen(port, err => {
-        if (err) throw err;
-        console.log(`> Running on localhost:${port}`);
-    });
-}).catch(()=> {
-    console.log("Enviroment falló");
-})
+(async() => {
+    portReceived = await etcd.get("port").string()
+    if(portReceived !== null){
+        port = parseInt(portReceived);
+    }else{
+        port = process.env.PORT || 6000;
+    }
+})();
+
+server = app.listen(port, err => {
+    if (err) throw err;
+    console.log(`> Running on localhost:${port}`);
+});
 
 module.exports = server;
