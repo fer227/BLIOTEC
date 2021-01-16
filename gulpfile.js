@@ -15,7 +15,7 @@ gulp.task('test', function(){
 });
 
 gulp.task('install', function(){
-    return run('npm install --also=dev').exec();
+    return run('npm install --also=dev || echo Ya instalado').exec();
 });
 
 gulp.task('build', function(){
