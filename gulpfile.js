@@ -19,7 +19,7 @@ gulp.task('install', function(){
 });
 
 gulp.task('build', function(){
-    return run('echo build success').exec;
+    return run('echo build success').exec();
 });
 
 gulp.task('run', function(){
