@@ -19,18 +19,18 @@ Podemos añadir información (*.info*) o indicar que es un error (*.error*), lo 
 ![error](./logger/logger_error.png)
 
 ### Configuración distribuida
-Para ello utilizamos *etcd3* y en caso de falla, leemos la información de un *.env*. Por el momento, solo necesitamos guardar el puerto. El código relacionado con esto se encuentra en el [index.js](../../index.js). Básicamente contamos con una función *getEnvironment*:
+Para ello utilizamos *etcd3* y en caso de falla, leemos la información de un *.env*. Por el momento, solo necesitamos guardar el puerto. El código relacionado con esto se encuentra en el [index.js](../../index.js):
 
 ```
-async function getEnvironment(){
+(async() => {
     port = await etcd.get("port").string()
-    .then(()=>{
+    if(port != null){
         port = parseInt(port);
-    }).catch((err)=>{
-        port = process.env.PORT || 6000;
-        return port;
-    });
-}
+    }
+})().catch(()=> {
+    port = process.env.PORT;
+});
+
 ```
 
 Esta función intenta obtener el puerto en *etcd* mediante la clave *port*. Como hemos comentado anteriormente, en caso de fallo, detecta la excepción y lo leemos del *.env* mediante *dotenv*.

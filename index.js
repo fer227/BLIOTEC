@@ -10,7 +10,7 @@ const { Etcd3 } = require('etcd3');
 
 const etcd = new Etcd3();
 const app = new Koa();
-var port = process.env.PORT;
+var port = 6000;
 var server = null;
 
 app.use(bodyParser());
@@ -29,7 +29,7 @@ app.use(usuarios.allowedMethods());
         port = parseInt(port);
     }
 })().catch(()=> {
-    port = 6000;
+    port = process.env.PORT;
 });
 
 server = app.listen(port, err => {
