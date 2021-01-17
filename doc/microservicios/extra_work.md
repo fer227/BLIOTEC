@@ -40,8 +40,8 @@ function exceptionHandler(ctx, exception){
 De esta forma pretendemos la unificación del tratamiento de errores, además de la reducción de código.
 
 Algunas referencias en los códigos de errores:
-- [stackoverflow](https://stackoverflow.com/questions/26587082/http-status-code-for-username-already-exists-when-registering-new-account/53341561)
-- [stackoverflow](https://stackoverflow.com/questions/3825990/http-response-code-for-post-when-resource-already-exists)
+- [HTTP Status Code for username already exists when registering new account (stackoverflow)](https://stackoverflow.com/questions/26587082/http-status-code-for-username-already-exists-when-registering-new-account/53341561)
+- [HTTP response code for POST when resource already exists (stackoverflow)](https://stackoverflow.com/questions/3825990/http-response-code-for-post-when-resource-already-exists)
 
 ## Github Action
 Decidí añadir una Github Action para lanzar test. De esta forma aprendemos a utilizar un nuevo sistema de integración continua que me ha resultado bastante rápido y eficaz. La Github Action se puede ver a continuación.
@@ -81,3 +81,41 @@ jobs:
 
 ```
 
+## Docker de despliegue
+Se ha llevado a cabo el Dockerfile de despliegue, el cual se muestro seguidamente.
+
+```
+FROM node:14-alpine3.10
+LABEL maintainer ="Fernando Izquierdo Romera <fer227@correo.ugr.es>" \
+        com.bliotec.version="4.0.0" \
+        com.bliotec.release-date="2021-01-11" \
+        com.bliotec.repository="https://github.com/fer227/BLIOTEC"
+
+RUN mkdir -p /app && chown -R node /app
+
+WORKDIR /app
+
+COPY --chown=node  package*.json gulpfile.js ./
+COPY --chown=node  ./index.js ./
+COPY --chown=node  src ./src
+COPY --chown=node  routes ./routes
+
+RUN npm install -g gulp-cli && npm link gulp && npm install gulp-run
+
+USER node
+
+RUN gulp install
+
+ENV PATH=/app/node_modules/.bin:$PATH
+
+# Exponemos el puerto 6000 donde responde el microservicio
+EXPOSE 6000
+
+# Llamamos a la tarea que lanza los test
+CMD ["gulp", "run"]
+```
+
+
+También se ha automatizado su construcción en Docker Hub.
+
+![hub](./hub/production_hub.png)
