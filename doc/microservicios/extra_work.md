@@ -42,3 +42,42 @@ De esta forma pretendemos la unificación del tratamiento de errores, además de
 Algunas referencias en los códigos de errores:
 - [stackoverflow](https://stackoverflow.com/questions/26587082/http-status-code-for-username-already-exists-when-registering-new-account/53341561)
 - [stackoverflow](https://stackoverflow.com/questions/3825990/http-response-code-for-post-when-resource-already-exists)
+
+## Github Action
+Decidí añadir una Github Action para lanzar test. De esta forma aprendemos a utilizar un nuevo sistema de integración continua que me ha resultado bastante rápido y eficaz. La Github Action se puede ver a continuación.
+
+```
+name: test
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  testear:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: comprobar montaje
+        run: ls -la
+
+      - name: lanzar test
+        run: |
+          docker run -t -v `pwd`:/app/test fer227/bliotec
+
+      - name: lanzar pruebas y gestor de tareas
+        run: |
+          docker run -t -v `pwd`:/app/test fer227/bliotec sh -c "ls -la && pwd && whoami && gulp install && gulp build && gulp test"
+
+```
+
