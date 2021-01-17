@@ -1,8 +1,6 @@
-lenguaje:
-  - node.js
+lenguaje: node.js
 
-fichero_tareas:
-  - gulpfile.js
+fichero_tareas: gulpfile.js
 
 test:
   - test/libros_test.js
