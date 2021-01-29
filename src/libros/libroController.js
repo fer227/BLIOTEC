@@ -28,14 +28,14 @@ class LibroController{
 	addValoracion(valoracion){
 		if(valoracion instanceof Valoracion){
 			//Vemos si hay valoraciones de ese libro.
-			if(valoracion.getISBN() in this.valoraciones){
+			if(valoracion.getID() in this.valoraciones){
 				//En caso afirmativo, lo añadimos. En caso de que el usuario ya tenía una valoración, simplemente la sustituye
-				this.valoraciones[valoracion.getISBN()][valoracion.getUsername()] = valoracion;
+				this.valoraciones[valoracion.getID()][valoracion.getUsername()] = valoracion;
 			}
 			else{
 				//Le creamos una entrada
-				this.valoraciones[valoracion.getISBN()] = {};
-				this.valoraciones[valoracion.getISBN()][valoracion.getUsername()] = valoracion;
+				this.valoraciones[valoracion.getID()] = {};
+				this.valoraciones[valoracion.getID()][valoracion.getUsername()] = valoracion;
 			}
 		}
 		else{
@@ -44,9 +44,9 @@ class LibroController{
 		}
 	}
 
-	getValoracionLibro(isbn){
+	getValoracionLibro(id){
 		if(isbn in this.valoraciones){
-			return this.valoraciones[isbn];
+			return this.valoraciones[id];
 		}
 		else{
 			return 0;
