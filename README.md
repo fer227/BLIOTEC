@@ -8,8 +8,7 @@ Para probarlo, primero clona el repositorio e instala nuestro gestor de tareas (
 
 ```
 git clone https://github.com/fer227/BLIOTEC
-npm install -g gulp
-npm install -g gulp run
+npm install -g gulp gulp-run
 gulp install
 gulp test
 ```
