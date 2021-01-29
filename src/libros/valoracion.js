@@ -13,8 +13,8 @@ class Valoracion{
         }
     }
 
-    comprobarTipos(isbn, username, nota, resenia){
-        if((typeof isbn === 'number') && (typeof username === 'string') && (typeof nota === 'number') && (typeof resenia === 'string')){
+    comprobarTipos(id_libro, isbn, username, nota, resenia){
+        if((typeof isbn === 'number') && (typeof isbn === 'number') && (typeof username === 'string') && (typeof nota === 'number') && (typeof resenia === 'string')){
             return true;
         }
         else{

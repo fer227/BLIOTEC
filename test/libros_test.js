@@ -16,13 +16,12 @@ describe("Test sobre adición de libros: ", function() {
 describe("Test sobre valoraciones: ", function() {
 	it("Comprobamos que se añaden las valoraciones correctamente", function(){
 		lc = new LibroController();
-		valoracion1 = new Valoracion(9780439023481, "fernando", 9, "Lo recomiendo mucho.");
-		valoracion2 = new Valoracion(9780439023481, "carla", 7, "Me encantó!");
+		valoracion1 = new Valoracion(1, 9780439023481, "fernando", 9, "Lo recomiendo mucho.");
+		valoracion2 = new Valoracion(2, 9876122673, "carla", 7, "Me encantó!");
 		lc.addValoracion(valoracion1);
 		lc.addValoracion(valoracion2);
-		valoraciones = lc.getValoracionLibro(9780439023481);
+		valoraciones = lc.getValoracionLibro(1);
 		expect(valoraciones["fernando"].to_string()).to.equal(valoracion1.to_string());
-		expect(valoraciones["carla"].to_string()).to.equal(valoracion2.to_string());
 	})
 });
 

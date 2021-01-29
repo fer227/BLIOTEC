@@ -45,7 +45,7 @@ class LibroController{
 	}
 
 	getValoracionLibro(id){
-		if(isbn in this.valoraciones){
+		if(id in this.valoraciones){
 			return this.valoraciones[id];
 		}
 		else{
