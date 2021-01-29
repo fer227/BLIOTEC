@@ -11,7 +11,6 @@ const router = new Router();
 router.get('/libros/', (ctx) => {
     ctx.status = 200;
     ctx.body = (libroController.getLibros());
-    ctx.log.info('Libros obtenidos correctamente');
 });
 
 //HU1 Consultar el catálogo (libro concreto)
@@ -20,7 +19,6 @@ router.get('/libros/:id', (ctx) => {
         libro = libroController.getLibro(ctx.params.id);
         ctx.status = 200;
         ctx.body = libro;
-        ctx.log.info('Libro concreto obtenido correctamente');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -32,7 +30,6 @@ router.get('/libros/genero/:id', (ctx) => {
         libros = libroController.getLibrosByGenero(parseInt(ctx.params.id));
         ctx.status = 200;
         ctx.body = libros;
-        ctx.log.info('Libros de un género obtenidos correctamente');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -46,7 +43,6 @@ router.post('/libros/', (ctx) => {
         libroController.addLibro(libro);
         ctx.status = 201;
         ctx.body = {msg : 'Libro creado con éxito.'};
-        ctx.log.info('Nuevo libro creado con éxito');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -58,7 +54,6 @@ router.delete('/libros/:id', (ctx) => {
         libroController.deleteLibro(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg: "Libro eliminado con éxito"};
-        ctx.log.info('Libro eliminado con éxito');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -70,7 +65,6 @@ router.get('/valoraciones/:isbn', (ctx) => {
         valoraciones = libroController.getValoracionLibro(ctx.params.isbn);
         ctx.status = 200;
         ctx.body = valoraciones;
-        ctx.log.info('Valoraciones de un libro obtenidas con éxito');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -82,7 +76,6 @@ router.post('/valoraciones/', (ctx) => {
         libroController.addValoracion(valoracion);
         ctx.status = 201;
         ctx.body = {msg : 'Valoración añadida con éxito.'};
-        ctx.log.info('Nueva valoración añadida con éxito.');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }

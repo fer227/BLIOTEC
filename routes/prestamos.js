@@ -18,7 +18,6 @@ router.post('/prestamos/', (ctx) => {
             prestamoController.addPrestamo(prestamo);
             ctx.status = 201;
             ctx.body = {msg : 'Préstamo llevado a cabo con éxito.'};
-            ctx.log.info('Nuevo préstamo añadido con éxito');
         }catch(exception){
             exceptionHandler(ctx, exception);
         }
@@ -26,7 +25,6 @@ router.post('/prestamos/', (ctx) => {
     else{
         ctx.status = 400;
         ctx.body = {msg : 'Formato de la fecha incorrecta.'};
-        ctx.log.error('Formato de la fecha incorrecta');
     }    
 });
 router.get('/prestamos/:id', (ctx) => {
@@ -34,7 +32,6 @@ router.get('/prestamos/:id', (ctx) => {
         prestamo = prestamoController.getPrestamo(ctx.params.id);
         ctx.status = 200;
         ctx.body = prestamo;
-        ctx.log.info('Préstamo obtenido correctamente');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -46,7 +43,6 @@ router.put('/prestamos/devolver/:id', (ctx) => {
         prestamoController.devolver(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg : 'Libro devuelto. Préstamo actualizado.'};
-        ctx.log.info('Libro devuelto correctamente.');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -58,7 +54,6 @@ router.put('/prestamos/renovar/:id', (ctx) => {
         nueva_fecha = prestamoController.renovar(ctx.params.id);
         ctx.status = 200;
         ctx.body = {msg : 'Préstamo renovado con nueva fecha: ' + nueva_fecha.toString()};
-        ctx.log.info('Préstamo renovado correctamente.');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
@@ -69,7 +64,6 @@ router.get('/prestamos/status/vencidos', (ctx) => {
     vencidos = prestamoController.getPrestamosVencidos();
     ctx.status = 200;
     ctx.body = vencidos;
-    ctx.log.info('Préstamos vencidos obtenidos correctamente');
 });
 
 module.exports = router;

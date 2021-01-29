@@ -18,7 +18,6 @@ router.post('/usuarios/', (ctx) => {
             usuarioController.addUsuario(usuario);
             ctx.status = 201;
             ctx.body = {msg : 'Usuario dado de alta con éxito.'};
-            ctx.log.info('Nuevo usuario dado de alta correctamente');
         }catch(exception){
             exceptionHandler(ctx, exception);
         }
@@ -26,7 +25,6 @@ router.post('/usuarios/', (ctx) => {
     else{
         ctx.status = 400;
         ctx.body = {msg : 'Formato de la fecha incorrecta.'};
-        ctx.log.error('Formato de la fecha incorrecta');
     }
 });
 
@@ -36,7 +34,6 @@ router.get('/usuarios/:username', (ctx) => {
         usuario = usuarioController.getUsuario(ctx.params.username);
         ctx.status = 200;
         ctx.body = usuario;
-        ctx.log.info('Información del usuario obtenida correctamente');
     }catch(exception){
         exceptionHandler(ctx, exception);
     }
