@@ -18,6 +18,11 @@ gulp.task('install', function(){
     return run('npm install --also=dev || echo Ya instalado').exec();
 });
 
+gulp.task('install-production', function(){
+    return run('npm install').exec();
+});
+
+
 gulp.task('build', function(){
     return run('echo build success').exec();
 });
