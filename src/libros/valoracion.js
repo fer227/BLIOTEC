@@ -1,6 +1,7 @@
 class Valoracion{
-    constructor(isbn, username, nota, resenia){
-        if(this.comprobarTipos(isbn, username, nota, resenia)){
+    constructor(id_libro, isbn, username, nota, resenia){
+        if(this.comprobarTipos(id_libro, isbn, username, nota, resenia)){
+            this.id_libro =  id_libro;
             this.isbn = isbn;
             this.username = username;
             this.nota = nota;
@@ -19,6 +20,10 @@ class Valoracion{
         else{
             return false;
         }
+    }
+
+    getID(){
+        return this.id_libro;
     }
 
     getISBN(){
