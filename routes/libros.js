@@ -60,9 +60,9 @@ router.delete('/libros/:id', (ctx) => {
 });
 
 //HU13 Valoraciones de libros
-router.get('/valoraciones/:isbn', (ctx) => {
+router.get('/valoraciones/:id', (ctx) => {
     try{
-        valoraciones = libroController.getValoracionLibro(ctx.params.isbn);
+        valoraciones = libroController.getValoracionLibro(ctx.params.id);
         ctx.status = 200;
         ctx.body = valoraciones;
     }catch(exception){
@@ -72,7 +72,7 @@ router.get('/valoraciones/:isbn', (ctx) => {
 router.post('/valoraciones/', (ctx) => {
     body = ctx.request.body;
     try{
-        valoracion = new Valoracion(body.isbn, body.username, body.nota, body.resenia);
+        valoracion = new Valoracion(body.id, body.isbn, body.username, body.nota, body.resenia);
         libroController.addValoracion(valoracion);
         ctx.status = 201;
         ctx.body = {msg : 'Valoración añadida con éxito.'};
