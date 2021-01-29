@@ -13,6 +13,17 @@ const app = new Koa();
 var port = 6000;
 var server = null;
 
+//middleware
+app.use(async (ctx, next) => {
+    await next();
+    if((ctx.status !== 200) && (ctx.status !== 201)){
+        ctx.log.error(JSON.parse(ctx.body).msg);
+    }
+    else{
+        ctx.log.info(JSON.parse(ctx.body).msg);
+    }
+})
+
 app.use(bodyParser());
 app.use(json());
 app.use(logger());
