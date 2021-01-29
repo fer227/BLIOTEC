@@ -39,6 +39,8 @@
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
     "koa-json": "^2.0.2",
-    "koa-pino-logger": "^3.0.0"
+    "koa-pino-logger": "^3.0.0",
+    "gulp": "^4.0.2",
+    "gulp-run": "^1.7.0"
   }
 }
