@@ -117,6 +117,7 @@ describe("Test sobre las rutas de valoraciones de los libros", function(){
         chai.request(server)
             .post("/valoraciones/")
             .send({
+                "id_libro": 1,
                 "isbn": 9780439023481,
                 "username": "fernando",
                 "nota": 9,
@@ -130,7 +131,7 @@ describe("Test sobre las rutas de valoraciones de los libros", function(){
 
     it("Obtener las valoraciones de un libro mediante su ISBN", function(done){
         chai.request(server)
-            .get("/valoraciones/" + 9780439023481)
+            .get("/valoraciones/" + 1)
             .end(function(err, res){
                 expect(res).to.have.status(200);
                 done();
