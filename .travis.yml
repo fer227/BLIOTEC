@@ -14,9 +14,11 @@ install:
   - npm install gulp-run
   - gulp install
 
+before_script:
+  - docker-compose up -d
+
 script:
   - gulp test
-  - docker-compose up -d
   - curl --location --request GET 'http://localhost:6001/libros/'
   - curl --location --request GET 'http://localhost:6002/prestamos/'
   - curl --location --request GET 'http://localhost:6003/usuarios/'
