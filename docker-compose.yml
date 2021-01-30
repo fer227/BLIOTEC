@@ -1,0 +1,37 @@
+version: '3'
+services:
+  libros:
+    container_name: libros
+    build: 
+      context: .
+      dockerfile: libros.Dockerfile
+    ports:
+         - "6001:6001"
+    networks: 
+      - red
+      
+  prestamos:
+    container_name: prestamos
+    build: 
+      context: .
+      dockerfile: prestamos.Dockerfile
+    ports:
+         - "6002:6002"
+    networks: 
+      - red
+
+  usuarios:
+    container_name: usuarios
+    build: 
+      context: .
+      dockerfile: usuarios.Dockerfile
+    ports:
+         - "6003:6003"
+    networks: 
+      - red
+
+networks:
+  red:
+    name: red_global
+
+
