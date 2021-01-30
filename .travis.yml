@@ -4,8 +4,12 @@ node_js:
   - 14
   - 15
 
+services:
+  - docker
+
 before_install:
   - npm install -g gulp-cli
+  - docker-compose build
 
 install:
   - npm install gulp-run
@@ -13,3 +17,7 @@ install:
 
 script:
   - gulp test
+  - docker-compose up -d
+  - curl -sL -w "http://localhost/:6001/libros"
+  - curl -sL -w "http://localhost/:6002/usuarios"
+  - curl -sL -w "http://localhost/:6003/prestamos"
