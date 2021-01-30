@@ -38,5 +38,10 @@ router.get('/usuarios/:username', (ctx) => {
         exceptionHandler(ctx, exception);
     }
 });
+router.get('/usuarios/', (ctx) => {
+    usuarios = usuarioController.getUsuarios();
+    ctx.status = 200;
+    ctx.body = usuarios;
+});
 
 module.exports = router;

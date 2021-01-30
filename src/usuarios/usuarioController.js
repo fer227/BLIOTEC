@@ -33,6 +33,10 @@ class UsuarioController{
 			throw new Exception("NotFound", "El usuario no existe");
 		}
 	}
+
+	getUsuarios(){
+		return this.usuarios;
+	}
 	
 }
 
