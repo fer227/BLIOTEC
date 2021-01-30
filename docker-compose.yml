@@ -1,15 +1,22 @@
 version: '3'
+# Declaramos los tres servicios
 services:
+  # Microservicio de libros
   libros:
-    container_name: libros
+    # Nombre del contenedor
+    container_name: 
+    # Ubicación del Dockerfile. En "context" indicamos el directorio y en "dockerfile" el nombre del mismo
     build: 
       context: .
       dockerfile: libros.Dockerfile
+    # Abrimos los puertos
     ports:
          - "6001:6001"
+    # Red para comunicación entre microservicios
     networks: 
       - red
-      
+
+  # Microservicio de préstamos
   prestamos:
     container_name: prestamos
     build: 
@@ -20,6 +27,7 @@ services:
     networks: 
       - red
 
+  # Microservicio de usuarios
   usuarios:
     container_name: usuarios
     build: 
@@ -30,6 +38,7 @@ services:
     networks: 
       - red
 
+# Creación de la red de comunicación
 networks:
   red:
     name: red_global
