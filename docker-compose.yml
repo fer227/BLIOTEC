@@ -4,7 +4,7 @@ services:
   # Microservicio de libros
   libros:
     # Nombre del contenedor
-    container_name: 
+    container_name: libros 
     # Ubicación del Dockerfile. En "context" indicamos el directorio y en "dockerfile" el nombre del mismo
     build: 
       context: .
@@ -14,7 +14,7 @@ services:
          - "6001:6001"
     # Red para comunicación entre microservicios
     networks: 
-      - red
+      - bliotecNetwork
 
   # Microservicio de préstamos
   prestamos:
@@ -25,7 +25,7 @@ services:
     ports:
          - "6002:6002"
     networks: 
-      - red
+      - bliotecNetwork
 
   # Microservicio de usuarios
   usuarios:
@@ -36,11 +36,12 @@ services:
     ports:
          - "6003:6003"
     networks: 
-      - red
+      - bliotecNetwork
 
 # Creación de la red de comunicación
 networks:
-  red:
-    name: red_global
+  bliotecNetwork:
+    #Todos los contenedores en una misma red
+    driver: bridge
 
 
