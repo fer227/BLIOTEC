@@ -15,21 +15,4 @@ gulp test
 
 En el directorio [doc](./doc) se puede observar las diferentes fases del avance del proyecto.
 
-## Microservicios
-
-- [Elección del framework de desarrollo para la API REST](./doc/microservicios/framework.md). 
-- [Diseño de la API REST](./doc/microservicios/api.md).
-- [Buenas prácticas](./doc/microservicios/goodpractices.md).
-- [Diseño de los test](./doc/microservicios/test.md).
-- [Otros trabajos](./doc/microservicios/extra_work.md).
-
-En cada subapartado se explica el trabajo realizado. De forma general y a modo de resumen, se han trabajado en los siguientes *issues* (las historias de usuario ya las hemos especificado anteriomente):
-- [Sustituir la fase de install de Travis](https://github.com/fer227/BLIOTEC/issues/39)
-- [Realización de la API REST de la aplicación](https://github.com/fer227/BLIOTEC/issues/40)
-- [Testeo de la aplicación y de las rutas](https://github.com/fer227/BLIOTEC/issues/44)
-- [Mejorar el lanzamiento de excepciones](https://github.com/fer227/BLIOTEC/issues/41)
-- [Obtener el puerto de un fichero (env)](https://github.com/fer227/BLIOTEC/issues/42)
-- [Registrar lo que sucede en el sistema mediante un logger](https://github.com/fer227/BLIOTEC/issues/43)
-- [Configuración distribuida mediante etcd 3](https://github.com/fer227/BLIOTEC/issues/45)
-- [Crear un Dockerfile de producción](https://github.com/fer227/BLIOTEC/issues/46)
-- [Automatizar testeo mediante github action](https://github.com/fer227/BLIOTEC/issues/47)
+## Composición de servicios
