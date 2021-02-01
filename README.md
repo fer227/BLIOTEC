@@ -201,3 +201,8 @@ script:
 - Lanzamos en *before_install* el *docker-compose build`*.
 - Mediante peticiones *curl* comprobamos que los servicios están activos.
 - El lanzamiento de los microservicios se ha llevado a cabo en una fase anterior a *script* (concretamente *before_script*) debido a que si los levantamos en la misma fase que en la que se prueban, puede ser que lance la petición antes de que esté activo el servicio y dar error.
+
+## Test de rendimiento
+Como en ocasiones anteriores hemos llevado a cabo tests de rendimiento mediante la herramienta *wrk*. En esta ocasión, lo haremos con **Taurus**.
+
+Para ello, tenemos que crear un archivo [taurus.yml](./taurus.yml) indicando cómo queremos hacer el test.

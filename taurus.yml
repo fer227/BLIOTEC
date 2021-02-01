@@ -1,7 +1,11 @@
 execution:
+  # Ejecución de los diferentes escenarios que definimos más abajo
   - scenario: libros
+    # 25 clientes
     concurrency: 25
+    # Test de 15 segundos
     hold-for: 15s
+    # Tiempo que tarda en alcanzar el máximo de clientes
     ramp-up: 5s
   
   - scenario: prestamos
@@ -16,8 +20,10 @@ execution:
   
 scenarios:
   libros:
+    # Dirección del microservicio con su correspondiente puerto
     default-address: http://0.0.0.0:6001
-    timeout: 10s
+    timeout: 5s
+    # Petición
     requests:
       - url: /libros
         method: GET
@@ -26,7 +32,7 @@ scenarios:
 
   prestamos:
     default-address: http://0.0.0.0:6002
-    timeout: 7s
+    timeout: 5s
     requests:
       - url: /prestamos
         method: GET
@@ -35,7 +41,7 @@ scenarios:
 
   usuarios:
     default-address: http://0.0.0.0:6003
-    timeout: 7s
+    timeout: 5s
     requests:
       - url: /usuarios
         method: GET
