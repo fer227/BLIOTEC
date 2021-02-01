@@ -36,6 +36,11 @@ router.get('/prestamos/:id', (ctx) => {
         exceptionHandler(ctx, exception);
     }
 });
+router.get('/prestamos', (ctx) => {
+    prestamos = usuarioController.getPrestamos();
+    ctx.status = 200;
+    ctx.body = prestamos;
+});
 
 //HU5 Devolver un libro
 router.put('/prestamos/devolver/:id', (ctx) => {

@@ -32,6 +32,10 @@ class PrestamoController{
 		}
 	}
 
+	getPrestamos(){
+		return this.prestamos;
+	}
+
 	getPrestamosVencidos(){
 		let vencidos = [];
 		let today = new Date();
