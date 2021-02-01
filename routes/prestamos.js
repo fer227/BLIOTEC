@@ -37,7 +37,7 @@ router.get('/prestamos/:id', (ctx) => {
     }
 });
 router.get('/prestamos', (ctx) => {
-    prestamos = usuarioController.getPrestamos();
+    prestamos = prestamoController.getPrestamos();
     ctx.status = 200;
     ctx.body = prestamos;
 });
