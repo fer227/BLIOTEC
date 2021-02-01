@@ -16,4 +16,6 @@ entidad:
   - src/usuarios/usuario.js
   - src/usuarios/usuarioController.js
 
+test-docker-compose: travis.yml
+
 make: gulp
