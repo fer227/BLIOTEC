@@ -16,3 +16,10 @@ gulp test
 En el directorio [doc](./doc) se puede observar las diferentes fases del avance del proyecto.
 
 ## Composición de servicios
+
+### Estructura escogida
+Puesto que tenemos tres entidades bastante independientes (libros, préstamos y usuarios), seguiremos nuestra idea del principio de dividir el sistema en tres microservicios. Cada entidad dispone de su controlador y sus propias rutas. 
+
+Necesitaremos crear tres ficheros "index" que lancen los servicios, introducir cada servicio en una imagen y coordinarlos mediante docker-compose.
+
+### Contenedores
