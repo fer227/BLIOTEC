@@ -1,16 +1,43 @@
 execution:
   - scenario: libros
-    concurrency: 2
-    hold-for: 7s
+    concurrency: 25
+    hold-for: 15s
+    ramp-up: 5s
+  
+  - scenario: prestamos
+    concurrency: 25
+    hold-for: 15s
+    ramp-up: 5s
+
+  - scenario: usuarios
+    concurrency: 25
+    hold-for: 15s
     ramp-up: 5s
   
 scenarios:
   libros:
-    # IP del microservicio
-    default-address: http://localhost:6001
+    default-address: http://0.0.0.0:6001
     timeout: 10s
     requests:
-      - url: /libros/
+      - url: /libros
+        method: GET
+        headers:
+          Content-Type: application/json
+
+  prestamos:
+    default-address: http://0.0.0.0:6002
+    timeout: 7s
+    requests:
+      - url: /prestamos
+        method: GET
+        headers:
+          Content-Type: application/json
+
+  usuarios:
+    default-address: http://0.0.0.0:6003
+    timeout: 7s
+    requests:
+      - url: /usuarios
         method: GET
         headers:
           Content-Type: application/json
