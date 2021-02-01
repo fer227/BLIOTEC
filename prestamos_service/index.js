@@ -28,7 +28,7 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 (async() => {
-    port = await etcd.get("port").string()
+    port = await etcd.get("port_prestamos").string()
     if(port != null){
         port = parseInt(port);
     }
