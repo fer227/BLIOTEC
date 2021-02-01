@@ -46,4 +46,4 @@ ENV PATH=/app/node_modules/.bin:$PATH
 EXPOSE 6001
 
 # Lanzamos el servicio
-CMD ["gulp", "run"]
+CMD ["node", "index.js"]

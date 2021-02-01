@@ -28,7 +28,7 @@ gulp.task('build', function(){
 });
 
 gulp.task('run', function(){
-    return run('npm run start').exec();
+    return run('node index.js').exec();
 })
 
 gulp.task('syntax', function(){

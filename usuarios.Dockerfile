@@ -24,4 +24,4 @@ ENV PATH=/app/node_modules/.bin:$PATH
 
 EXPOSE 6003
 
-CMD ["gulp", "run"]
+CMD ["node", "index.js"]
