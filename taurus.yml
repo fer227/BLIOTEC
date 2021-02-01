@@ -4,19 +4,19 @@ execution:
     # 1000 clientes
     concurrency: 1000
     # Aguantar hasta 30 segundos
-    hold-for: 30s
+    hold-for: 45s
     # Tiempo que tarda en alcanzar el máximo de clientes
-    ramp-up: 15s
+    ramp-up: 20s
   
   - scenario: prestamos
     concurrency: 1000
-    hold-for: 30s
-    ramp-up: 15s
+    hold-for: 45s
+    ramp-up: 20s
 
   - scenario: usuarios
     concurrency: 1000
-    hold-for: 30s
-    ramp-up: 15s
+    hold-for: 45s
+    ramp-up: 20s
   
 scenarios:
   libros:

@@ -205,4 +205,47 @@ script:
 ## Test de rendimiento
 Como en ocasiones anteriores hemos llevado a cabo tests de rendimiento mediante la herramienta *wrk*. En esta ocasión, lo haremos con **Taurus**.
 
-Para ello, tenemos que crear un archivo [taurus.yml](./taurus.yml) indicando cómo queremos hacer el test.
+Para ello, tenemos que crear un archivo [taurus.yml](./taurus.yml) indicando cómo queremos hacer el test. Normalmente tendremos que establecer en número de usuarios concurrentes y el tiempo del test (entre otros, se puede ver en el archivo).
+
+El primer test que llevé a cabo era bastante leve, con tan solo 25 usuarios y 15 segundos y para mi sorpresa me encontré que el servicio estaba respondiendo más lento de lo que debía:
+
+![test1](./doc/docker-compose/test1.png)
+
+Como se puede observar apenas consigue superar el 60% de las peticiones en cada microservicio. Después de estar bastante tiempo buscando, encontré que el problema era el gestor de tareas (*gulp*). Por razones que aún desconozco, si lanzaba los microservicios en sus respectivos Dockerfiles mediante el gestor de tareas, es decir, `CMD[ "gulp", "run"]` (que interiormente llama a `node index.js`) el rendimiento del microservicio no es el que debería. También probé que *gulp* llamara internamente a `npm run start` sin éxito.
+
+En consecuencia opté a lanzar los microservicios directamente con node: `CMD [ "node", "index.js" ]`. De esta forma, ya obtenemos un rendimiento óptimo (en el caso de 25 usuarios, el 100% de respuestas correctas).
+
+Probando con varios parámetros, encontré que el *break point* (donde empiezan a fallar algunas peticiones) aproximado está en 180 usuarios (ejecutados durante 45 segundos). La imagen de a continuación es el resultado de ese test exitoso.
+
+![breakpoint](./doc/docker-compose/breakpoint.png)
+
+Finalmente quise probar a los microservicios con una carga mayor (que es el test que se muestra actualmente en el [taurus.yml](./taurus.yml)) con 1000 usuarios y 45 segundos de duración. Los resultados son bastante buenos.
+
+![users1000](./doc/docker-compose/users1000.png)
+
+## Correcciones
+
+### Logger mediante Middleware
+Establecemos el siguiente *middleware* en la aplicación que se encarga de "loggear" toda las peticiones que llegan a la API (y así nos ahorramos bastantes líneas de código). El *Middleware* se muestra a continuación:
+
+```
+app.use(async (ctx, next) => {
+    await next();
+    if((ctx.status !== 200) && (ctx.status !== 201)){
+        ctx.log.error(JSON.parse(ctx.body).msg);
+    }
+    else{
+        ctx.log.info(JSON.parse(ctx.body).msg);
+    }
+})
+```
+
+Como se puede observar, es una función asíncrona que contiene un `await next();`. El Middleware se detiene en esa línea llamamos al siguiente *Middleware* si lo hubiera o directamente pasaría a la aplicación en la API. Cuando el resto haya terminado, entonces la función se retoma. Es en ese momento (y no antes, por eso bloqueamos mediante el *await*) cuando puedo saber si la operación en la aplicación ha sido o no exitosa mediante el contexto (el famoso objecto **ctx**) de la petición, que contiene el *status*.
+
+## Issues en los que he trabajado
+- [La ruta "valoraciones" debería incluir el URI del libro al que se refieren](https://github.com/fer227/BLIOTEC/issues/48).
+- [Loggear mediante Middleware](https://github.com/fer227/BLIOTEC/issues/49).
+- [Separar servicios y lanzarlos con docker-compose](https://github.com/fer227/BLIOTEC/issues/50).
+- [Dockerizar cada microservicio](https://github.com/fer227/BLIOTEC/issues/51).
+- [Las rutas no pueden terminar en "/"](https://github.com/fer227/BLIOTEC/issues/53).
+- [Testear la composición de servicios en algún sistema de ci (y rendimiento)](https://github.com/fer227/BLIOTEC/issues/52).
