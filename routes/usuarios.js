@@ -7,7 +7,7 @@ usuarioController = new UsuarioController();
 const router = new Router();
 
 //HU3 Usuario quiere registrarse
-router.post('/usuarios/', (ctx) => {
+router.post('/usuarios', (ctx) => {
     body = ctx.request.body;
     fecha_str = body.fecha_nacimiento;
     fecha_arr = fecha_str.split('/');

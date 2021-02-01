@@ -7,7 +7,7 @@ prestamoController = new PrestamoController();
 const router = new Router();
 
 //HU4 Poder hacer un préstamo
-router.post('/prestamos/', (ctx) => {
+router.post('/prestamos', (ctx) => {
     body = ctx.request.body;
     fecha_str = body.fecha_inicio;
     fecha_arr = fecha_str.split('/');

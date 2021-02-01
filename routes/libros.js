@@ -8,7 +8,7 @@ libroController = new LibroController();
 const router = new Router();
 
 //HU1 Consultar el catálogo
-router.get('/libros/', (ctx) => {
+router.get('/libros', (ctx) => {
     ctx.status = 200;
     ctx.body = (libroController.getLibros());
 });
@@ -36,7 +36,7 @@ router.get('/libros/genero/:id', (ctx) => {
 });
 
 //HU2 Introducir nuevos libros
-router.post('/libros/', (ctx) => {
+router.post('/libros', (ctx) => {
     body = ctx.request.body;
     try{
         libro = new Libro(body.id, body.titulo, body.autor, body.anio, body.edicion, body.ISBN, body.paginas, body.editorial, body.genero);
@@ -69,7 +69,7 @@ router.get('/valoraciones/:id', (ctx) => {
         exceptionHandler(ctx, exception);
     }
 });
-router.post('/valoraciones/', (ctx) => {
+router.post('/valoraciones', (ctx) => {
     body = ctx.request.body;
     try{
         valoracion = new Valoracion(body.id_libro, body.isbn, body.username, body.nota, body.resenia);
