@@ -24,11 +24,11 @@ Necesitaremos crear tres ficheros "index" que lancen los servicios, introducir c
 
 ## Microservicios y contenedores
 Para cada contenedor son muy importantes los siguientes aspectos:
-- Copiar solos los archivos que nos sean necesarios.
-- Respetar la estructura de directorios para que los *require* sigan funcionando.
-- Reservar un puerto exclusivo para el microservicio.
-- Instalar solo las dependencias neceserias (es decir, de producción).
-- Como para todos los microservicios vamos a utilizar las mismas herramientas, no hace falta que especifiquemos nuevos archivos de depecencias. Las dependencias de producción de los microservicios (incluidas en el *package.json*) se muestran a continuación.
+- Copiar solos los archivos que nos sean **necesarios**.
+- Respetar la estructura de directorios para que los **require** sigan funcionando.
+- Reservar un **puerto** exclusivo para el microservicio.
+- Instalar solo las dependencias neceserias (es decir, de **producción**).
+- Como para todos los microservicios vamos a utilizar las mismas herramientas, no hace falta que especifiquemos nuevos archivos de dependencias. Las dependencias de producción de los microservicios (incluidas en el *package.json*) se muestran a continuación.
 
 ```
 "dependencies": {
@@ -51,13 +51,13 @@ Para cada microservicio, hemos creado una nueva carpeta con su **index.js** y **
 
 Los tres microservicios se han llevado a cabo de forma muy similar, así que nos centraremos en explicar el microservicio de libros.
 
-En los *.env* hemos indicado los puertos de cada microservicio, siendo el 6001 para el microservicio de los libros, 6002 para el de los préstamos y 6003 para el de los usuarios.
+En los *.env* hemos indicado los puertos de cada microservicio, siendo el **6001** para el microservicio de los libros, **6002** para el de los préstamos y **6003** para el de los usuarios.
 
-Como hemos avanzado anteriormente, en cada *index* lanzamos el servicio. Es bastante similar al index que venimos utilizando. Las diferencias más relevantes son:
-- Incluímos solo el fichero de rutas que corresponde al microservicio ([línea 7](./libros_service/index.js)). 
-- En el *etcd*, cada microservicio tendrá una clave para recoger su puerto ([línea 31](./libros_service/index.js)).
+Como hemos avanzado anteriormente, en cada *index* lanzamos el microservicio. Es bastante similar al index que venimos utilizando. Las diferencias más relevantes son:
+- Incluímos **solo** el fichero de rutas que corresponde al microservicio ([línea 7](./libros_service/index.js)). 
+- En el *etcd*, cada microservicio tendrá una **clave** diferente para recoger su puerto ([línea 31](./libros_service/index.js)).
 
-Vamos a pasar a analizar como he construido la imagen de los microservicios. A continuación se muestra el código (con comentarios explicativos) del Dockerfile del microservicio de libros.
+Vamos a pasar a analizar como he construido la imagen de los microservicios. A continuación se muestra el código (con comentarios explicativos) del Dockerfile para el microservicio de libros.
 
 ```
 # Continuamos con la imagen que venimos utilizando en mis Dockerfiles
@@ -198,12 +198,12 @@ script:
 ```
 
 - He eliminado una versión del lenguaje de las tres que testeábamos (concretamente la 12) para ahorrar créditos pues consumía bastante tiempo.
-- Lanzamos en *before_install* el *docker-compose build`*.
+- Lanzamos en *before_install* el `docker-compose build`.
 - Mediante peticiones *curl* comprobamos que los servicios están activos.
-- El lanzamiento de los microservicios se ha llevado a cabo en una fase anterior a *script* (concretamente *before_script*) debido a que si los levantamos en la misma fase que en la que se prueban, puede ser que lance la petición antes de que esté activo el servicio y dar error.
+- El lanzamiento de los microservicios se ha llevado a cabo en una fase previa a la fase de *script* (concretamente *before_script*) debido a que si los levantamos en la misma fase que en la que se prueban, puede ser que lance la petición antes de que esté activo el servicio y dar error.
 
 ## Test de rendimiento
-Como en ocasiones anteriores hemos llevado a cabo tests de rendimiento mediante la herramienta *wrk*. En esta ocasión, lo haremos con **Taurus**.
+Como en ocasiones anteriores hemos llevado a cabo tests de rendimiento mediante la herramienta *wrk*, en esta ocasión, lo haremos con **Taurus**.
 
 Para ello, tenemos que crear un archivo [taurus.yml](./taurus.yml) indicando cómo queremos hacer el test. Normalmente tendremos que establecer en número de usuarios concurrentes y el tiempo del test (entre otros, se puede ver en el archivo).
 
@@ -211,22 +211,22 @@ El primer test que llevé a cabo era bastante leve, con tan solo 25 usuarios y 1
 
 ![test1](./doc/docker-compose/test1.png)
 
-Como se puede observar apenas consigue superar el 60% de las peticiones en cada microservicio. Después de estar bastante tiempo buscando, encontré que el problema era el gestor de tareas (*gulp*). Por razones que aún desconozco, si lanzaba los microservicios en sus respectivos Dockerfiles mediante el gestor de tareas, es decir, `CMD[ "gulp", "run"]` (que interiormente llama a `node index.js`) el rendimiento del microservicio no es el que debería. También probé que *gulp* llamara internamente a `npm run start` sin éxito.
+Como se puede observar, apenas consigue superar el 60% de las peticiones en cada microservicio. Después de estar bastante tiempo buscando y probando, encontré que el problema era el gestor de tareas (**gulp**). Por razones que aún desconozco, si lanzo los microservicios (en sus respectivos Dockerfiles) mediante el gestor de tareas, es decir, `CMD[ "gulp", "run"]` (que internamente llama a `node index.js`) el rendimiento del microservicio no es el que debería. También probé a que gulp llamara internamente a `npm run start`, pero sin éxito.
 
-En consecuencia opté a lanzar los microservicios directamente con node: `CMD [ "node", "index.js" ]`. De esta forma, ya obtenemos un rendimiento óptimo (en el caso de 25 usuarios, el 100% de respuestas correctas).
+En consecuencia opté por lanzar los microservicios directamente con node: `CMD [ "node", "index.js" ]`. De esta forma, ya obtenemos un rendimiento óptimo (en el caso de 25 usuarios, el 100% de respuestas correctas).
 
 Probando con varios parámetros, encontré que el *break point* (donde empiezan a fallar algunas peticiones) aproximado está en 180 usuarios (ejecutados durante 45 segundos). La imagen de a continuación es el resultado de ese test exitoso.
 
 ![breakpoint](./doc/docker-compose/breakpoint.png)
 
-Finalmente quise probar a los microservicios con una carga mayor (que es el test que se muestra actualmente en el [taurus.yml](./taurus.yml)) con 1000 usuarios y 45 segundos de duración. Los resultados son bastante buenos.
+Finalmente quise probar a los microservicios con una carga mayor (que es el test que se muestra actualmente en el [taurus.yml](./taurus.yml)) con 1000 para cada microservicio usuarios y 45 segundos de duración. Los resultados son bastante satisfactorios:
 
 ![users1000](./doc/docker-compose/users1000.png)
 
 ## Correcciones
 
 ### Logger mediante Middleware
-Establecemos el siguiente *middleware* en la aplicación que se encarga de "loggear" toda las peticiones que llegan a la API (y así nos ahorramos bastantes líneas de código). El *Middleware* se muestra a continuación:
+El siguiente *middleware* se encarga de "loggear" toda las peticiones que llegan a la API (y así nos ahorramos bastantes líneas de código, pues anteriormente lo hacía "a mano"). El *Middleware* se muestra a continuación:
 
 ```
 app.use(async (ctx, next) => {
@@ -240,7 +240,9 @@ app.use(async (ctx, next) => {
 })
 ```
 
-Como se puede observar, es una función asíncrona que contiene un `await next();`. El Middleware se detiene en esa línea llamamos al siguiente *Middleware* si lo hubiera o directamente pasaría a la aplicación en la API. Cuando el resto haya terminado, entonces la función se retoma. Es en ese momento (y no antes, por eso bloqueamos mediante el *await*) cuando puedo saber si la operación en la aplicación ha sido o no exitosa mediante el contexto (el famoso objecto **ctx**) de la petición, que contiene el *status*.
+Como se puede observar, es una función asíncrona que contiene un `await next();`. El Middleware se detiene en esa línea, esperando a que termine el siguiente *Middleware* si lo hubiera o directamente la petición en la API. Cuando el resto haya terminado, entonces la función se retoma. Es en ese momento (y no antes, por eso bloqueamos mediante el *await*) cuando puedo saber si la operación ha sido o no exitosa mediante el contexto de la petición (el famoso objecto **ctx**), que contiene el *status*. Incluso podemos incluir el mensaje que va en el *body* de la respuesta.
+
+Este Middleware se define en el *index* de los microservicios.
 
 ## Issues en los que he trabajado
 - [La ruta "valoraciones" debería incluir el URI del libro al que se refieren](https://github.com/fer227/BLIOTEC/issues/48).
