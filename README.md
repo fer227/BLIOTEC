@@ -223,6 +223,46 @@ Finalmente quise probar a los microservicios con una carga mayor (que es el test
 
 ![users1000](./doc/docker-compose/users1000.png)
 
+## Despliegue
+Los servicios elegidos para el despligue de la aplicación son **Amazon Web Services** (AWS). Para ello, primero tenemos que crear una instancia, en nuestro caso elegimos **Ubuntu Server** como sistema operativo.
+
+Una vez creada la instancia, podremos ver las direcciones para acceder a la máquina (tanto el DNS como la IP, siendo esta última la más cómoda bajo mi punto de vista).
+
+![direcciones](./doc/docker-compose/acceso.png)
+
+Previamente, tendremos que hacer accesibles los puertos que utilizamos en los diferentes microservicios. Esto lo llevamos a cabo en nuestro panel de control, **Red y Seguridad > Security Groups**. Seleccionamos el grupo donde está la máquina que vamos a crear e indicamos los puertos que necesitamos.
+
+![puertos](./doc/docker-compose/reglasentrada.png)
+
+Una vez nos conectamos a la máquina mediante *ssh*, instalamos las herramientas que necesitamos:
+- **Docker**.
+- **Docker-compose**.
+- **BLIOTEC** (clonando el repositorio con git).
+
+Cuando ya lo hayamos instalado todo, simplemente tendremos que hacer `Docker-compose up -d` para levantar los servicios.
+
+Para comprobar que están activos, podemos llevar a cabo una petición mediante **Postman** con la IP de la máquina:
+
+![postman](./doc/docker-compose/postman.png)
+
+También puedes probarlo tú mismo con **curl**. Estás son algunas posibles peticiones:
+
+```
+curl --location --request GET 'http://52.207.241.145:6001/libros/'
+curl --location --request GET 'http://52.207.241.145:6002/prestamos/'
+curl --location --request GET 'http://52.207.241.145:6003/usuarios/'
+```
+
+Llegados a este punto, también podemos plantearnos llevar a cabo un test de prestaciones a nuestro servicio ya desplegado. Podemos reutilizar el *taurus.yml* pero cambiando la dirección `0.0.0.0` por la IP. Podemos ver como la máquina recibe las peticiones mediante el *log*.
+
+![testing](./doc/docker-compose/testing.png)
+
+A continuación vemos los resultados. Los resultados son prácticamente iguales que si lo ejecutáramos en local y por tanto, prometedores.
+
+![performance](./doc/docker-compose/performance-machine.png)
+
+
+
 ## Correcciones
 
 ### Logger mediante Middleware
