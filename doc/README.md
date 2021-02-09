@@ -8,4 +8,5 @@ El proyecto ha avanzado siguiendo las fases que se muestran a continuación:
 - [Elección y creación del Dockerfile](./docker.md).
 - [Docker Hub y Github Container Registry](./dockerhub.md).
 - [Integración continua](./ci.md).
-- [Microservicios](./microservicios.md)
+- [Microservicios](./microservicios.md).
+- [Composición de servicios](./composicion.md).
