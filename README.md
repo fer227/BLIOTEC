@@ -26,3 +26,8 @@ Aquí explicamos algunas partes del desarrollo y toma de decisiones:
 - [Integración continua](./doc/ci.md).
 - [Microservicios](./doc/microservicios.md).
 - [Composición de servicios](./doc/composicion.md).
+
+## Credits
+- Developed by [fer227](https://github.com/fer227) and supervised by [jj](https://github.com/JJ).
+- Logo designed by [diegogaraur](https://github.com/diegogaraur) and [fer227](https://github.com/fer227).
+- Logo implemented by [diegogaraur](https://github.com/diegogaraur).
